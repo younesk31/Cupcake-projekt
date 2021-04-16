@@ -46,7 +46,7 @@ US-9: Som administrator kan jeg fjerne en ordre, så systemet ikke kommer til at
 2. Mockup. Det er desværre kun forsiden vi har fået udleveret og det er okay at ændre layoutet.
 Headergrafik
 
-#The Bottoms
+# The Bottoms
 
 Bottom | Price
 ------------ | -------------
@@ -57,7 +57,7 @@ Pistacio | 6.00
 Almond | 7.00
 
 
-#The Toppings
+# The Toppings
 
 Topping | Price
 ------------ | -------------
