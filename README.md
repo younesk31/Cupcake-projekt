@@ -66,7 +66,6 @@ Blueberry | 5.00
 Rasberry | 5.00
 Crispy | 6.00
 Strawberry | 6.00
-
 Rum/Raisin | 7.00
 Orange | 8.00
 Lemon | 8.00
