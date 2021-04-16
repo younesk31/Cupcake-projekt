@@ -18,27 +18,21 @@
     <meta name="theme-color" content="#7952b3">
 </head>
 <body>
-    <!--
-        This header is inspired by this bootstrap
-        example: https://getbootstrap.com/docs/5.0/examples/pricing/
-    -->
-<header class="d-flex flex-column flex-md-row align-items-center p-3 pb-0 px-md-4 mb-4 bg-white border-bottom shadow-sm">
-    <div class="h5 my-0 me-md-auto fw-normal">
-        <p>Cupcake Project</p>
-        <p style="font-size: larger">
-            <jsp:invoke fragment="header"/>
-        </p>
+    <!-- Logo image -->
+    <div class="container" style="min-height: 20vh;">
+        <a href="<%=request.getContextPath()%>"><img src="${pageContext.request.contextPath}/images/logo.png" class="center-blok img-fluid mb-4" alt="Responsive image"></a>
     </div>
+
+<header class="d-flex flex-column flex-md-row align-items-center p-3 pb-0 px-md-4 mb-4 bg-white border-bottom shadow-sm">
     <nav class="my-2 my-md-0 me-md-3">
         <c:if test="${addHomeLink == null }">
-            <a class="p-2 text-dark" href="<%=request.getContextPath()%>">Home</a>
+            <a class="p-2 text-dark" href="<%=request.getContextPath()%>">Hjem</a>
         </c:if>
-        <a class="p-2 text-dark" href="#">Orders</a>
-        <a class="p-2 text-dark" href="#">Profile</a>
-        <a class="p-2 text-dark" href="#">About</a>
+        <a class="p-2 text-dark" href="#">Ordre</a>
+        <a class="p-2 text-dark" href="#">Min side</a>
+        <a class="p-2 text-dark" href="${pageContext.request.contextPath}/fc/aboutus">Om os</a>
     </nav>
-
-    <div>
+    <div class="col-xs-2">
 
         <c:if test="${sessionScope.user != null }">
             ${sessionScope.user.email}
@@ -51,13 +45,13 @@
         <c:if test="${isNotLoginPage && isNotRegisterPage}">
             <c:if test="${sessionScope.user != null }">
                 <a type="button" class="btn btn-sm  btn-outline-secondary"
-                href="${pageContext.request.contextPath}/fc/logoutcommand">Logout</a>
+                href="${pageContext.request.contextPath}/fc/logoutcommand">Log ud</a>
             </c:if>
             <c:if test="${sessionScope.user == null }">
                 <a type="button" class="btn btn-sm  btn-outline-secondary"
-                   href="${pageContext.request.contextPath}/fc/loginpage">Login</a>
+                   href="${pageContext.request.contextPath}/fc/loginpage">Log ind</a>
                 <a type="button" class="btn btn-sm  btn-outline-secondary"
-                   href="${pageContext.request.contextPath}/fc/registerpage">Sign up</a>
+                   href="${pageContext.request.contextPath}/fc/registerpage">Register</a>
             </c:if>
     </div>
     </c:if>
