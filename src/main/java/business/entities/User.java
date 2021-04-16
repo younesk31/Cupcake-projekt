@@ -2,7 +2,6 @@ package business.entities;
 
 public class User
 {
-//hello
     public User(String email, String password, String role)
     {
         this.email = email;
