@@ -13,27 +13,38 @@
     </jsp:attribute>
 
     <jsp:body>
-
-        <div>
-            <h2>Our Cool Site</h2>
-
-            <div style="margin-top: 3em;margin-bottom: 3em;">
-                Main page for this 2. semester start project used at cphbusiness.dk
+        <h6 class="font-weight-bold display-2">Velkommen ombord</h6>
+        <p class="lead font-weight-bold">Øens bedste cupcakes. Vælg og bestil her:</p>
+        <form id="form1" method="get" action="${pageContext.request.contextPath}/fc/????">
+        <div class="row">
+            <div class="col-sm-3">
+                    <select class="form-select" name="bottom" id="bottom" aria-label="Default select example">
+                        <option selected>Vælg bund:</option>
+                        <option value="chokolade">chokolade TEST</option>
+                        <c:forEach var="bottom" items="${applicationScope.bottomList}">
+                            <option value="${bottom.id}">${bottom.name}</option>
+                        </c:forEach>
+                    </select>
             </div>
-
-            <c:if test="${sessionScope.role == 'employee' }">
-                <p style="font-size: larger">This is what you can do,
-                    since your are logged in as an employee</p>
-                 <p><a href="fc/employeepage">Employee Page</a>
-             </c:if>
-
-             <c:if test="${sessionScope.role == 'customer' }">
-                <p style="font-size: larger">This is what you can do, since your
-                    are logged in as a customer</p>
-                <p><a href="fc/customerpage">Customer Page</a>
-            </c:if>
-
+            <div class="col-sm-3">
+                <select class="form-select" name="topping" id="topping" aria-label="Default select example">
+                    <option selected>Vælg topping:</option>
+                    <option value="chokolade">chokolade TEST</option>
+                    <c:forEach var="topping" items="${applicationScope.toppingList}">
+                        <option value="${topping.id}">${topping.name}</option>
+                    </c:forEach>
+                </select>
+            </div>
+            <div class="col-sm-3">
+                    <select class="form-select" name="quantity" id="quantity" aria-label="Default select example">
+                        <option selected>Vælg antal:</option>
+                        <c:forEach begin="1" end="10" varStatus="quantity">
+                            <option value="${quantity.index}">${quantity.index}</option>
+                        </c:forEach>
+                    </select>
+            </div>
         </div>
-
+        <button id="submit" type="submit" class="btn btn-primary btn-sm float-md-right">Læg i kurv</button>
+        </form>
     </jsp:body>
 </t:genericpage>

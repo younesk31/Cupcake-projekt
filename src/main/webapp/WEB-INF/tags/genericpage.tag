@@ -10,7 +10,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><jsp:invoke fragment="header"/></title>
+    <title>
+        <jsp:invoke fragment="header"/>
+    </title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
@@ -18,54 +20,64 @@
     <meta name="theme-color" content="#7952b3">
 </head>
 <body>
-    <!-- Logo image -->
-    <div class="container" style="min-height: 20vh;">
-        <a href="<%=request.getContextPath()%>"><img src="${pageContext.request.contextPath}/images/logo.png" class="center-blok img-fluid mb-4" alt="Responsive image"></a>
+
+<%--<a href="<%=request.getContextPath()%>"><img src="${pageContext.request.contextPath}/images/logo.png" class="img-fluid floating center-blok mb-4" style="vertical-align: middle;width: 100% \9;" alt="Responsive image"></a>--%>
+
+
+<!-- nav bar -->
+<div class="page-header">
+
+    <div class="card-body mb-0">
+        <img class="card-img-top" src="${pageContext.request.contextPath}/images/logo.png" alt="Card image cap">
     </div>
+</div>
 
-<header class="d-flex flex-column flex-md-row align-items-center p-3 pb-0 px-md-4 mb-4 bg-white border-bottom shadow-sm">
-    <nav class="my-2 my-md-0 me-md-3">
-        <c:if test="${addHomeLink == null }">
-            <a class="p-2 text-dark" href="<%=request.getContextPath()%>">Hjem</a>
-        </c:if>
-        <a class="p-2 text-dark" href="#">Ordre</a>
-        <a class="p-2 text-dark" href="#">Min side</a>
-        <a class="p-2 text-dark" href="${pageContext.request.contextPath}/fc/aboutus">Om os</a>
-    </nav>
-    <div class="col-xs-2">
+<div class="card-body " style="margin-top: -2em">
+    <header class="d-flex flex-column flex-md-row align-items-center px-md-4 mb-3 bg-white border-bottom shadow-sm">
 
-        <c:if test="${sessionScope.user != null }">
-            ${sessionScope.user.email}
-        </c:if>
+        <!-- Logo image -->
+        <div class="h4 me-md-auto fw-normal">
+            <a class="navbar-brand mb-0 h1 text-dark" href="<%=request.getContextPath()%>">Hjem</a>
+            <a class="navbar-brand mb-0 h1 text-dark" href="#">Bestil</a>
+            <a class="navbar-brand mb-0 h1 text-dark" href="#">Min side</a>
+            <a class="navbar-brand mb-0 h1 text-dark" href="${pageContext.request.contextPath}/fc/aboutus">Om os</a>
+        </div>
 
-        <c:set var="thisPage" value="${pageContext.request.servletPath}"/>
-        <c:set var="isNotLoginPage" value="${!fn:endsWith(thisPage,'loginpage.jsp')}"/>
-        <c:set var="isNotRegisterPage" value="${!fn:endsWith(thisPage,'registerpage.jsp')}"/>
+        <nav class="my-2 me-md-6">
 
-        <c:if test="${isNotLoginPage && isNotRegisterPage}">
             <c:if test="${sessionScope.user != null }">
-                <a type="button" class="btn btn-sm  btn-outline-secondary"
-                href="${pageContext.request.contextPath}/fc/logoutcommand">Log ud</a>
+                ${sessionScope.user.email}
             </c:if>
-            <c:if test="${sessionScope.user == null }">
-                <a type="button" class="btn btn-sm  btn-outline-secondary"
-                   href="${pageContext.request.contextPath}/fc/loginpage">Log ind</a>
-                <a type="button" class="btn btn-sm  btn-outline-secondary"
-                   href="${pageContext.request.contextPath}/fc/registerpage">Register</a>
-            </c:if>
-    </div>
-    </c:if>
-</header>
 
-<div id="body" class="container" style="min-height: 20vh;">
-    <jsp:doBody/>
+            <c:set var="thisPage" value="${pageContext.request.servletPath}"/>
+            <c:set var="isNotLoginPage" value="${!fn:endsWith(thisPage,'loginpage.jsp')}"/>
+            <c:set var="isNotRegisterPage" value="${!fn:endsWith(thisPage,'registerpage.jsp')}"/>
+
+            <c:if test="${isNotLoginPage && isNotRegisterPage}">
+                <c:if test="${sessionScope.user != null }">
+                    <a type="button" class="btn btn-sm  btn btn-outline-danger" href="${pageContext.request.contextPath}/fc/logoutcommand">Log ud</a>
+                </c:if>
+                <c:if test="${sessionScope.user == null }">
+                    <a type="button" class="btn btn-sm  btn btn-outline-dark" href="${pageContext.request.contextPath}/fc/loginpage">Log ind</a>
+                    <a type="button" class="btn btn-sm  btn btn-outline-success" href="${pageContext.request.contextPath}/fc/registerpage">Register</a>
+                </c:if>
+            </c:if>
+            <a class="p-2 text-dark" href="#"> <img src="https://icons.getbootstrap.com/assets/icons/basket.svg" width="30" height="30" class="d-inline-block align-top" alt=""></a>
+        </nav>
+    </header>
+</div>
+
+
+<div class="card-body bg-white" style="margin-top: -2em">
+<jsp:doBody/>
 </div>
 
 <!-- Footer -->
 <div class="container">
-    <br>
+    <br/>
     <hr>
-    <br>
+    Olsker Cupcakes® 2021
+    <br/>
     <jsp:invoke fragment="footer"/>
 </div>
 
