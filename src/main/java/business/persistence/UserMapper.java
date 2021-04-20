@@ -1,9 +1,12 @@
 package business.persistence;
 
+import business.entities.Bottom;
 import business.entities.User;
 import business.exceptions.UserException;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserMapper {
     private Database database;
@@ -59,4 +62,32 @@ public class UserMapper {
             throw new UserException("Connection to database could not be established");
         }
     }
+
+    public List<User> getAllUsers() throws UserException {
+        try (Connection connection = database.connect()) {
+            String sql = "SELECT user_id, email, balance FROM users";
+
+            List<User> userList = new ArrayList<>();
+
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    int user_id = rs.getInt("user_id");
+                    String email = rs.getString("email");
+                    double balance = rs.getDouble("balance");
+
+                    userList.add(new User(user_id, email, balance));
+                }
+
+            } catch (SQLException ex) {
+                throw new UserException(ex.getMessage());
+            }
+            return userList;
+        } catch (SQLException ex) {
+            throw new UserException("Connection to database could not be established");
+        }
+    }
+
+
 }

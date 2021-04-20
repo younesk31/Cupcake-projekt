@@ -14,6 +14,12 @@ public class User {
 
     }
 
+    public User(int id, String email, double balance) {
+        this.id = id;
+        this.email = email;
+        this.balance = balance;
+    }
+
     public double getBalance() {
         return balance;
     }
