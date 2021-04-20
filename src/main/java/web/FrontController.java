@@ -2,6 +2,7 @@ package web;
 
 import business.exceptions.UserException;
 import business.persistence.Database;
+import business.services.CupcakeFacade;
 import web.commands.*;
 
 import java.io.IOException;
@@ -36,9 +37,28 @@ public class FrontController extends HttpServlet
             {
                 Logger.getLogger("web").log(Level.SEVERE, ex.getMessage(), ex);
             }
+
+
         }
 
         // Initialize whatever global datastructures needed here:
+        CupcakeFacade cupcakeFacade = new CupcakeFacade(database);
+        try
+        {
+            getServletContext().setAttribute("bottomList", cupcakeFacade.getAllBottoms());
+        }
+        catch (UserException e)
+        {
+            Logger.getLogger("web").log(Level.SEVERE, e.getMessage(), e);
+        }
+        try
+        {
+            getServletContext().setAttribute("topList", cupcakeFacade.getAllToppings());
+        }
+        catch (UserException e)
+        {
+            Logger.getLogger("web").log(Level.SEVERE, e.getMessage(), e);
+        }
 
     }
 
