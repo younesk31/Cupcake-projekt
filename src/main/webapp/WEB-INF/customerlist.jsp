@@ -17,6 +17,8 @@
                     <th scope="col">user ID</th>
                     <th scope="col">Name</th>
                     <th scope="col">Balance</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
 <%--                    <th scope="col">Number of Orders</th>--%>
 <%--                    <th scope="col">Generated Revenue</th>--%>
                 </tr>
@@ -25,7 +27,9 @@
                     <tr>
                         <td>${clist.id}</td>
                         <td>${clist.email}</td>
-                        <td>${clist.balance}</td>
+                        <td>${clist.balance}<button class="editbtn">edit</button></td>
+                        <td><button class="editbtn">delete user</button></td>
+                        <td><button class="editbtn">see orders</button></td>
 <%--                         <td>${clist.customer.orders}</td> --%>
 <%--                         <td>${clist.customer.revenue}</td>--%>
                     <br></tr>
