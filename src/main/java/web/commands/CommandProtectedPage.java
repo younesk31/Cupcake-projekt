@@ -4,15 +4,12 @@ import business.exceptions.UserException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-public class CommandProtectedPage extends Command
-{
+public class CommandProtectedPage extends Command {
     public String role;
     public String pageToShow;
 
-    public CommandProtectedPage(String pageToShow, String role)
-    {
+    public CommandProtectedPage(String pageToShow, String role) {
         this.pageToShow = pageToShow;
         this.role = role;
 
@@ -23,8 +20,7 @@ public class CommandProtectedPage extends Command
         return pageToShow;
     }
 
-    public String getRole()
-    {
+    public String getRole() {
         return role;
     }
 }

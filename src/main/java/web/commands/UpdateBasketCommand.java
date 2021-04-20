@@ -11,15 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UpdateBasketCommand extends CommandProtectedPage
-{
+public class UpdateBasketCommand extends CommandProtectedPage {
     public String role;
     public String pageToShow;
     CupcakeFacade cupcakeFacade;
 
-    public UpdateBasketCommand(String pageToShow, String role)
-    {
-        super(pageToShow,role);
+    public UpdateBasketCommand(String pageToShow, String role) {
+        super(pageToShow, role);
         cupcakeFacade = new CupcakeFacade(database);
         this.pageToShow = pageToShow;
         this.role = role;
@@ -42,11 +40,10 @@ public class UpdateBasketCommand extends CommandProtectedPage
             cupcakeList = new ArrayList<>();
         }
 
-        cupcakeList.add(new Cupcake(bottom,top,Integer.parseInt(quantity)));
+        cupcakeList.add(new Cupcake(bottom, top, Integer.parseInt(quantity)));
 
         request.getSession().setAttribute("cupcakeList", cupcakeList);
 
         return pageToShow;
     }
-
 }

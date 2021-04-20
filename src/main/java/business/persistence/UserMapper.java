@@ -1,27 +1,22 @@
 package business.persistence;
 
-import business.exceptions.UserException;
 import business.entities.User;
+import business.exceptions.UserException;
 
 import java.sql.*;
 
-public class UserMapper
-{
+public class UserMapper {
     private Database database;
 
-    public UserMapper(Database database)
-    {
+    public UserMapper(Database database) {
         this.database = database;
     }
 
-    public void createUser(User user) throws UserException
-    {
-        try (Connection connection = database.connect())
-        {
+    public void createUser(User user) throws UserException {
+        try (Connection connection = database.connect()) {
             String sql = "INSERT INTO users (email, password, role , balance) VALUES (?, ?, ?, ?)";
 
-            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS))
-            {
+            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 ps.setString(1, user.getEmail());
                 ps.setString(2, user.getPassword());
                 ps.setString(3, user.getRole());
@@ -31,51 +26,37 @@ public class UserMapper
                 ids.next();
                 int id = ids.getInt(1);
                 user.setId(id);
-            }
-            catch (SQLException ex)
-            {
+            } catch (SQLException ex) {
                 throw new UserException(ex.getMessage());
             }
-        }
-        catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
             throw new UserException(ex.getMessage());
         }
     }
 
-    public User login(String email, String password) throws UserException
-    {
-        try (Connection connection = database.connect())
-        {
+    public User login(String email, String password) throws UserException {
+        try (Connection connection = database.connect()) {
             String sql = "SELECT user_id, role, balance FROM users WHERE email = ? AND password = ?";
 
-            try (PreparedStatement ps = connection.prepareStatement(sql))
-            {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setString(1, email);
                 ps.setString(2, password);
                 ResultSet rs = ps.executeQuery();
-                if (rs.next())
-                {
+                if (rs.next()) {
                     String role = rs.getString("role");
                     int id = rs.getInt("user_id");
                     double balance = rs.getDouble("balance");
                     User user = new User(email, password, role, balance);
                     user.setId(id);
                     return user;
-                } else
-                {
+                } else {
                     throw new UserException("Could not validate user");
                 }
-            }
-            catch (SQLException ex)
-            {
+            } catch (SQLException ex) {
                 throw new UserException(ex.getMessage());
             }
-        }
-        catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
             throw new UserException("Connection to database could not be established");
         }
     }
-
 }
