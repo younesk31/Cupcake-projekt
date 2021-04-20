@@ -2,6 +2,7 @@ package web;
 
 import business.exceptions.UserException;
 import business.persistence.Database;
+import business.services.CupcakeFacade;
 import web.commands.*;
 
 import java.io.IOException;
@@ -17,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "FrontController", urlPatterns = {"/fc/*"})
 public class FrontController extends HttpServlet
 {
-    private final static String USER = "root";
-    private final static String PASSWORD = "xag32zrx";
+    private final static String USER = "cf";
+    private final static String PASSWORD = "cf1234";
     private final static String URL = "jdbc:mysql://localhost:3306/cupcake?serverTimezone=CET";
 
     public static Database database;
@@ -36,9 +37,28 @@ public class FrontController extends HttpServlet
             {
                 Logger.getLogger("web").log(Level.SEVERE, ex.getMessage(), ex);
             }
+
+
         }
 
         // Initialize whatever global datastructures needed here:
+        CupcakeFacade cupcakeFacade = new CupcakeFacade(database);
+        try
+        {
+            getServletContext().setAttribute("bottomList", cupcakeFacade.getAllBottoms());
+        }
+        catch (UserException e)
+        {
+            Logger.getLogger("web").log(Level.SEVERE, e.getMessage(), e);
+        }
+        try
+        {
+            getServletContext().setAttribute("topList", cupcakeFacade.getAllToppings());
+        }
+        catch (UserException e)
+        {
+            Logger.getLogger("web").log(Level.SEVERE, e.getMessage(), e);
+        }
 
     }
 
