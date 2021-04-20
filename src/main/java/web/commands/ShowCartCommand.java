@@ -6,15 +6,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-public class ShowCartCommand extends Command {
-    public String role;
-    public String pageToShow;
-
+public class ShowCartCommand extends CommandProtectedPage {
 
     public ShowCartCommand(String pageToShow, String role) {
-        this.pageToShow = pageToShow;
-        this.role = role;
-
+        super(pageToShow, role);
     }
 
     @Override
