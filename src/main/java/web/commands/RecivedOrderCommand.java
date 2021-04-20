@@ -33,15 +33,20 @@ public class RecivedOrderCommand extends Command {
 
         if (balance >= total) {
             cupcakeFacade.insertOrder(user_id, total, cupcakeList);
-            cupcakeFacade.updateBalance((balance-total),user_id);
-            request.getSession().setAttribute("balance", (balance-total));
-            user.setBalance(balance-total);
+            cupcakeFacade.updateBalance((balance - total), user_id);
+            request.getSession().setAttribute("balance", (balance - total));
+            user.setBalance(balance - total);
         }
+
+        if (balance == 0) {
+            request.setAttribute("error", "Din saldo er for lav!");
+            return "index";
+        }
+
         return pageToShow;
     }
 
-    public String getRole()
-    {
+    public String getRole() {
         return role;
     }
 }

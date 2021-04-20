@@ -29,8 +29,10 @@
             </c:forEach>
         </table>
 
-        <a class="p-2 text-dark" href="${pageContext.request.contextPath}/fc/insertorder"> <button class="btn btn-outline-success">Tryk for at tilføje</button></a>
-
+        <a class="p-2 text-dark" href="${pageContext.request.contextPath}/fc/insertorder"> <button class="btn btn-outline-success">Tryk her for at betale</button></a>
+        <c:if test="${sessionScope.total != null }">
+            Total: ${sessionScope.total}
+        </c:if>
 
     </jsp:body>
 
