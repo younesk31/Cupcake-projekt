@@ -18,36 +18,45 @@
             <div class="card">
                 <div class="card-body">
                     <h6 class="font-weight-bold display-2">Velkommen ombord</h6>
-                    <p class="lead font-weight-bold">Øens bedste cupcakes. Vælg og bestil her:</p>
-                    <form id="form" method="post" action="${pageContext.request.contextPath}/fc/updateBasket">
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <select class="form-select" name="bottom" id="bottom" aria-label="Default select example">
-                                    <option selected>Vælg bund:</option>
-                                    <c:forEach var="bottom" items="${applicationScope.bottomList}">
-                                        <option value="${bottom.bottomId}">${bottom.name} - ${bottom.price},- </option>
-                                    </c:forEach>
-                                </select>
+                    <div class="row-6">
+
+                        <h3>Udvalg af bunde</h3>
+                        <c:forEach var="bunde" items="${applicationScope.bottomList}">
+                            ${bunde.bottomId} - ${bunde.name} - ${bunde.price},-<br>
+                        </c:forEach>
+
+                        <h3>Udvalg af toppings</h3>
+                        <c:forEach var="topping" items="${applicationScope.topList}">
+                            ${topping.topId} - ${topping.name} - ${topping.price},-<br>
+                        </c:forEach>
+                    </div>
+
+                    <div style="margin-top: 5em;" class="container row-3">
+                        <form name="login" action="${pageContext.request.contextPath}/fc/logincommand"  method="POST">
+                            <div class="row mb-3">
+                                <label class="col-sm-1 col-form-label" for="email">Email</label>
+                                <div class="col-sm-4">
+                                    <input class="form-control" id="email" type="text" name="email" placeholder="someone@nowhere.com">
+                                </div>
                             </div>
-                            <div class="col-sm-3">
-                                <select class="form-select" name="topping" id="topping" aria-label="Default select example">
-                                    <option selected>Vælg topping:</option>
-                                    <c:forEach var="topping" items="${applicationScope.topList}">
-                                        <option value="${topping.topId}">${topping.name} - ${topping.price},-</option>
-                                    </c:forEach>
-                                </select>
+                            <div class="row mb-3">
+                                <label class="col-sm-1 col-form-label" for="password">Password</label>
+                                <div class="col-sm-4">
+                                    <input class="form-control" id="password" type="password" name="password" placeholder="sesam">
+                                </div>
                             </div>
-                            <div class="col-sm-3">
-                                <select class="form-select" name="quantity" id="quantity" aria-label="Default select example">
-                                    <option selected>Vælg antal:</option>
-                                    <c:forEach begin="1" end="10" varStatus="quantity">
-                                        <option value="${quantity.index}">${quantity.index}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                        </div>
-                        <button id="submit" type="submit" class="btn btn-primary btn-sm">Læg i kurv</button>
-                    </form>
+                            <c:if test="${requestScope.error != null }">
+                                <p style="color:red">
+                                        ${requestScope.error}
+                                </p>
+                            </c:if>
+
+                            <c:if test="${not empty param.msg}">
+                                <p style="font-size: large">${param.msg}</p>
+                            </c:if>
+                            <button class="btn btn-primary" type="submit" value="Login">log ind</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

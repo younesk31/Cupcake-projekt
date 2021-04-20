@@ -38,9 +38,21 @@
         <!-- Logo image -->
         <div class="h4 me-md-auto fw-normal">
             <a class="navbar-brand mb-0 h1 text-dark" href="<%=request.getContextPath()%>">Hjem</a>
-            <a class="navbar-brand mb-0 h1 text-dark" href="#">Bestil</a>
-            <a class="navbar-brand mb-0 h1 text-dark" href="#">Min side</a>
+            <a class="navbar-brand mb-0 h1 text-dark" href="${pageContext.request.contextPath}/fc/orderpage">Bestil</a>
+
+            <c:if test="${sessionScope.role == 'employee' }">
+            <a class="navbar-brand mb-0 h1 text-dark" href="${pageContext.request.contextPath}/fc/employeepage">Admin side</a>
+            </c:if>
+
+            <c:if test="${sessionScope.role == 'customer' }">
+            <a class="navbar-brand mb-0 h1 text-dark" href="${pageContext.request.contextPath}/fc/customerpage">Min side</a>
+            </c:if>
+
+
             <a class="navbar-brand mb-0 h1 text-dark" href="${pageContext.request.contextPath}/fc/aboutus">Om os</a>
+            <c:if test="${sessionScope.role == 'customer' }">
+                <a class="navbar-brand mb-0 h1 text-dark" href="#">Mine ordre</a>
+                </c:if>
         </div>
 
         <nav class="my-2 me-md-6">

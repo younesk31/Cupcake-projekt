@@ -27,23 +27,32 @@ public class UpdateBasketCommand extends CommandProtectedPage {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws UserException {
 
-        String bottomId = request.getParameter("bottom");
-        String toppingId = request.getParameter("topping");
-        String quantity = request.getParameter("quantity");
+        try {
 
-        Bottom bottom = cupcakeFacade.getBottoms(Integer.parseInt(bottomId));
-        Top top = cupcakeFacade.getToppings(Integer.parseInt(toppingId));
+            String bottomId = request.getParameter("bottom");
+            String toppingId = request.getParameter("topping");
+            String quantity = request.getParameter("quantity");
 
-        List<Cupcake> cupcakeList = (List<Cupcake>) request.getSession().getAttribute("cupcakeList");
+            Bottom bottom = cupcakeFacade.getBottoms(Integer.parseInt(bottomId));
+            Top top = cupcakeFacade.getToppings(Integer.parseInt(toppingId));
 
-        if (cupcakeList == null) {
-            cupcakeList = new ArrayList<>();
+            List<Cupcake> cupcakeList = (List<Cupcake>) request.getSession().getAttribute("cupcakeList");
+
+            if (cupcakeList == null) {
+                cupcakeList = new ArrayList<>();
+            } else {
+                request.setAttribute("error", "");
+                ;
+            }
+
+            cupcakeList.add(new Cupcake(bottom, top, Integer.parseInt(quantity)));
+
+            request.getSession().setAttribute("cupcakeList", cupcakeList);
+
+        } catch (UserException ex) {
+            request.setAttribute("error", "Kunne ikke opdatere kurven!");
+            return pageToShow;
         }
-
-        cupcakeList.add(new Cupcake(bottom, top, Integer.parseInt(quantity)));
-
-        request.getSession().setAttribute("cupcakeList", cupcakeList);
-
         return pageToShow;
     }
 }

@@ -33,6 +33,11 @@ public class LoginCommand extends CommandUnprotectedPage {
             session.setAttribute("balance", user.getBalance());
 
             String pageToShow = user.getRole() + "page";
+
+            if (user.getRole().equals("customer")){
+                pageToShow = "orderpage";
+            }
+
             return REDIRECT_INDICATOR + pageToShow;
 
         } catch (UserException ex) {
