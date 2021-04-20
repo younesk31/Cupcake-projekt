@@ -11,5 +11,15 @@
         <property name="serverTimezone" value="ECT" />
       </driver-properties>
     </data-source>
+    <data-source source="LOCAL" name="@localhost" uuid="59a1a657-15b1-4201-903c-098ce96ce618">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+      <driver-properties>
+        <property name="serverTimezone" value="ECT" />
+      </driver-properties>
+    </data-source>
   </component>
 </project>

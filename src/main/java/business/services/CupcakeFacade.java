@@ -36,7 +36,7 @@ public class CupcakeFacade {
         return cupcakeMapper.insertOrder(user_id, total, cupcakeList);
     }
 
-    public int updateBalance(double amount, int user_id) throws UserException{
-        return cupcakeMapper.updateBalance(amount,user_id);
+    public int updateBalance(double amount, int user_id) throws UserException {
+        return cupcakeMapper.updateBalance(amount, user_id);
     }
 }
