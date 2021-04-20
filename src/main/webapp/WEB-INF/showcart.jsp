@@ -44,7 +44,6 @@
             </c:if>
 
             <input type="submit" class="btn btn-outline-primary" name="updateQuantity" value="Opdater kurv">
-            </a>
         </form>
         <a class="p-2 text-dark" href="${pageContext.request.contextPath}/fc/insertorder">
             <button class="btn btn-outline-success">Tryk her for at betale</button>
