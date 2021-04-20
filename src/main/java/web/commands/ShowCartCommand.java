@@ -6,14 +6,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-public class ShowCartCommand extends Command
-{
+public class ShowCartCommand extends Command {
     public String role;
     public String pageToShow;
 
 
-    public ShowCartCommand(String pageToShow, String role)
-    {
+    public ShowCartCommand(String pageToShow, String role) {
         this.pageToShow = pageToShow;
         this.role = role;
 
@@ -22,20 +20,20 @@ public class ShowCartCommand extends Command
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
 
+        //todo make sure that we dont geet nullpointer cause of empty cart
         //todo reset cart
         List<Cupcake> cupcakeList = (List<Cupcake>) request.getSession().getAttribute("cupcakeList");
         double total = 0;
 
-        for (int i = 0; i < cupcakeList.size(); i++) {
-            total += cupcakeList.get(i).getPrice();
+        for (Cupcake cupcake : cupcakeList) {
+            total += cupcake.getPrice();
         }
 
         request.getSession().setAttribute("total", total);
         return pageToShow;
     }
 
-    public String getRole()
-    {
+    public String getRole() {
         return role;
     }
 }

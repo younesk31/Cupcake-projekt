@@ -37,7 +37,7 @@ public class Cupcake {
     }
 
     public double getPrice() {
-        return (this.bottom.getPrice()+this.top.getPrice())*quantity;
+        return (this.bottom.getPrice() + this.top.getPrice()) * quantity;
     }
 
 }
