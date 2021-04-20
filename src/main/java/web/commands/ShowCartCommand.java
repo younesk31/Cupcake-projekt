@@ -26,8 +26,14 @@ public class ShowCartCommand extends Command
         List<Cupcake> cupcakeList = (List<Cupcake>) request.getSession().getAttribute("cupcakeList");
         double total = 0;
 
-        for (int i = 0; i < cupcakeList.size(); i++) {
-            total += cupcakeList.get(i).getPrice();
+        // TODO: lots of things go wrong when you press buttons and the cart hasn't been initialised yet.
+        //  consider giving sessionScope an empty List from the start. Wrapping in != null everywhere seems tedious.
+        if (cupcakeList != null)
+        {
+            for (int i = 0; i < cupcakeList.size(); i++)
+            {
+                total += cupcakeList.get(i).getPrice();
+            }
         }
 
         request.getSession().setAttribute("total", total);

@@ -32,6 +32,7 @@ public abstract class Command
         commands.put("updateBasket", new UpdateBasketCommand("index", "customer"));
         commands.put("showcart", new ShowCartCommand("showcart", "customer"));
         commands.put("insertorder", new RecivedOrderCommand("index", "customer"));
+        commands.put("updatequantity", new UpdateQuantityCommand("showcart", "customer"));
     }
 
     public static Command fromPath(
