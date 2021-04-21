@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 public class FrontController extends HttpServlet {
     private final static String USER = "cf";
     private final static String PASSWORD = "cf1234";
-    private final static String URL = "jdbc:mysql://localhost:3306/cupcake?serverTimezone=CET";
+    private final static String URL = "jdbc:mysql://192.168.1.79:3306/cupcake?serverTimezone=CET";
 
     public static Database database;
 

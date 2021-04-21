@@ -36,6 +36,7 @@ public class RecivedOrderCommand extends Command {
             cupcakeFacade.updateBalance((balance - total), user_id);
             request.getSession().setAttribute("balance", (balance - total));
             user.setBalance(balance - total);
+            cupcakeList.clear();
         }
 
         if (balance == 0) {

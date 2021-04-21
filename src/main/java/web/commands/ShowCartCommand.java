@@ -19,12 +19,15 @@ public class ShowCartCommand extends CommandProtectedPage {
         //todo reset cart
         List<Cupcake> cupcakeList = (List<Cupcake>) request.getSession().getAttribute("cupcakeList");
         double total = 0;
-        
-        for (Cupcake cupcake : cupcakeList) {
-            total += cupcake.getPrice();
-        }
 
-        request.getSession().setAttribute("total", total);
+        if (cupcakeList != null) {
+
+            for (Cupcake cupcake : cupcakeList) {
+                total += cupcake.getPrice();
+            }
+
+            request.getSession().setAttribute("total", total);
+        }
         return pageToShow;
     }
 
