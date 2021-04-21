@@ -19,7 +19,7 @@ public class ShowMyOrdersCommand extends CommandProtectedPage {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws UserException {
-        List<OrderListing> orderListings = orderListingFacade.getOrdersByUserID(Integer.parseInt((String)request.getSession().getAttribute("user_id")));
+        List<OrderListing> orderListings = orderListingFacade.getOrdersByUserID((Integer)request.getSession().getAttribute("user_id"));
         request.setAttribute("userOrderListings", orderListings);
         return pageToShow;
     }

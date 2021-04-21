@@ -23,7 +23,7 @@ public class OrderMapper {
 
     public List<OrderListing> getOrdersByUserID(int user_Id) throws UserException {
         try (Connection connection = database.connect()) {
-            String sql = "SELECT o.*, u.email FROM orders o JOIN users u ON o.user_id = u.user_id WHERE user_id = ?";
+            String sql = "SELECT o.*, u.email FROM orders o JOIN users u ON o.user_id = u.user_id WHERE u.user_id = ?";
             List<OrderListing> orderListings = new ArrayList<>();
 
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -62,7 +62,7 @@ public class OrderMapper {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, order_id);
                 ResultSet rs = ps.executeQuery();
-                if (rs.next()) {
+                while (rs.next()) {
 
                     int quantity = rs.getInt("quantity");
 
@@ -73,8 +73,6 @@ public class OrderMapper {
 
                     cupcakeList.add(cupcake);
 
-                } else {
-                    throw new UserException("Database Bottom issue");
                 }
                 return cupcakeList;
             } catch (SQLException ex) {

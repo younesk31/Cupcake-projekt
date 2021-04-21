@@ -15,27 +15,26 @@
         <table class="table table-dark table-hover">
             <c:forEach var="order" items="${requestScope.userOrderListings}">
                 <tr>
-                    <td>Ordre nr: ${order.order_id}</td>
-                    <td>${order.created}</td>
+                    <th>Ordre nr: ${order.order_id}</th>
+                    <th>${order.created}</th>
+                    <th></th>
+                    <th>${order.orderTotal}</th>
                 </tr>
+                <tr>
+                    <th>Top</th>
+                    <th>Bund</th>
+                    <th>Antal</th>
+                    <th>Subtotal</th>
+                </tr>
+                ${order.cupcakeList.size()}
                 <c:forEach var="line" items="${order.cupcakeList}">
                     <tr>
-                        <th>Top</th>
-                        <th>Bund</th>
-                        <th>Antal</th>
-                        <th>Subtotal</th>
                         <td>${line.top.name}</td>
                         <td>${line.bottom.name}</td>
                         <td>${line.quantity}</td>
                         <td>${line.price}</td>
                     </tr>
                 </c:forEach>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>${order.orderTotal}</td>
-                </tr>
             </c:forEach>
             <td></td>
         </table>
