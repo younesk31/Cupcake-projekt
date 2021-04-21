@@ -51,8 +51,6 @@ public class OrderMapper {
         }
     }
 
-
-
     public List<Cupcake> getOrderLine(int order_id) throws UserException {
         try (Connection connection = database.connect()) {
             String sql = "select ol.order_id, ol.quantity, t.name topping, t.price, t.toppings_id, b.name bottom, b.price, b.bottom_id  from orderline ol " +

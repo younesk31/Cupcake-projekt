@@ -41,8 +41,7 @@ public class UpdateBasketCommand extends CommandProtectedPage {
             if (cupcakeList == null) {
                 cupcakeList = new ArrayList<>();
             } else {
-                request.setAttribute("error", "");
-                ;
+                request.setAttribute("error", "du er et dumt menneske");
             }
 
             cupcakeList.add(new Cupcake(bottom, top, Integer.parseInt(quantity)));

@@ -4,40 +4,61 @@
 
 <t:genericpage>
     <jsp:attribute name="header">
-         Demo Page for Employee Roles
+         Mine ordre
     </jsp:attribute>
     <jsp:attribute name="footer">
     </jsp:attribute>
     <jsp:body>
-        <h1>Hello ${sessionScope.role} </h1>
-        You are now logged in as a EMPLOYEE of our wonderful site.
+        <h1>Hej ${sessionScope.email} </h1>
+        Her er dine tidligere ordre!
+        <%--  ${order.cupcakeList.size()} --%>
 
+        <form action="${pageContext.request.contextPath}/fc/showmyorderid" method="post">
+            <select class="form-select" name="orderid" id="orderid" aria-label="Default select example">
+                <option selected>Vælg dit ordre nummer:</option>
+                 <c:forEach var="order" items="${requestScope.userOrderListings}">
+                        <option value="${order.order_id}">${order.order_id}</option>
+                    </c:forEach>
+            </select>
+                <button id="order" type="submit" class="btn btn-primary btn-sm">Vis denne ordre</button>
+        </form>
+
+        <br>
+
+        <c:if test="${requestScope.order != null && not empty requestScope.order && requestScope.order != null}">
         <table class="table table-dark table-hover">
-            <c:forEach var="order" items="${requestScope.userOrderListings}">
+            <tr>
+                <th>Ordre nr: <c:out value="${requestScope.userOrderListings.get(requestScope.order-1).order_id}"/></th>
+                <th>Oprettet: <c:out value="${requestScope.userOrderListings.get(requestScope.order-1).created}"/></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
+                <th>Topping</th>
+                <th>Bund</th>
+                <th>Antal</th>
+                <th>priser</th>
+                <th></th>
+            </tr>
+            <c:forEach var="repeta" items="${requestScope.userOrderListings.get(requestScope.order-1).cupcakeList}">
                 <tr>
-                    <th>Ordre nr: ${order.order_id}</th>
-                    <th>${order.created}</th>
-                    <th></th>
-                    <th>${order.orderTotal}</th>
+                    <td>${repeta.top.name}</td>
+                    <td>${repeta.bottom.name}</td>
+                    <td>${repeta.quantity}</td>
+                    <td>${repeta.price}</td>
+                    <td></td>
                 </tr>
-                <tr>
-                    <th>Top</th>
-                    <th>Bund</th>
-                    <th>Antal</th>
-                    <th>Subtotal</th>
-                </tr>
-                ${order.cupcakeList.size()}
-                <c:forEach var="line" items="${order.cupcakeList}">
-                    <tr>
-                        <td>${line.top.name}</td>
-                        <td>${line.bottom.name}</td>
-                        <td>${line.quantity}</td>
-                        <td>${line.price}</td>
-                    </tr>
-                </c:forEach>
             </c:forEach>
-            <td></td>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>Subtotal: <c:out value="${requestScope.userOrderListings.get(requestScope.order-1).orderTotal}"/></th>
+            </tr>
         </table>
+        </c:if>
 
     </jsp:body>
 </t:genericpage>
