@@ -41,12 +41,14 @@
             <c:if test="${requestScope.error != null}">
                 <p style="color: red">${requestScope.error}</p>
             </c:if>
+            <c:if test="${sessionScope.cupcakeList != null && not empty sessionScope.cupcakeList }">
 
             <input type="submit" class="btn btn-outline-primary" name="updateQuantity" value="Opdater kurv">
         </form>
         <a class="p-2 text-dark" href="${pageContext.request.contextPath}/fc/insertorder">
             <button class="btn btn-outline-success">Tryk her for at betale</button>
         </a>
+            </c:if>
         <c:if test="${sessionScope.total != null }">
             Total: ${sessionScope.total}
         </c:if>
