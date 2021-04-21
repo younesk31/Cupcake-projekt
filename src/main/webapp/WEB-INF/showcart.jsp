@@ -32,8 +32,7 @@
                         <td>${cart.price}</td>
                         <!-- OrderLine doesn't exist and doesn't have an ID, so we're using the loop index to identify the item selected -->
                         <td>
-                            <button type="submit" class="btn btn-danger" name="remove" value="${status.index}">Fjern
-                            </button>
+                            <button type="submit" class="btn btn-danger" name="remove" value="${status.index}">Fjern</button>
                         </td>
                     </tr>
                 </c:forEach>
