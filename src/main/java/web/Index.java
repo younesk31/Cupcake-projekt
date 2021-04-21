@@ -12,5 +12,6 @@ public class Index extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/fc/index").forward(request, response);
+
     }
 }
