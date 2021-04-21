@@ -40,4 +40,7 @@ public class Cupcake {
         return (this.bottom.getPrice() + this.top.getPrice()) * quantity;
     }
 
+    public void setPrice(double price) {
+        this.price = price;
+    }
 }
