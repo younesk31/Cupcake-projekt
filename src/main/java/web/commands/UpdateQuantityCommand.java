@@ -57,9 +57,8 @@ public class UpdateQuantityCommand extends CommandProtectedPage
         // TODO duplicate code.
         if (cupcakeList != null)
         {
-            for (int i = 0; i < cupcakeList.size(); i++)
-            {
-                total += cupcakeList.get(i).getPrice();
+            for (Cupcake cupcake : cupcakeList) {
+                total += cupcake.getPrice();
             }
         }
     

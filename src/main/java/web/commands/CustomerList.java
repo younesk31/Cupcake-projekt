@@ -1,5 +1,6 @@
 package web.commands;
 
+import business.entities.Cupcake;
 import business.entities.User;
 import business.exceptions.UserException;
 import business.services.UserFacade;
@@ -26,6 +27,14 @@ public class CustomerList extends CommandProtectedPage {
 
         request.getSession().setAttribute("customerList", customerList);
 
+
+        // TODO: 21-04-2021 skal laves senere
+
+        for (User user : customerList) {
+
+            System.out.println(user.getBalance());
+            request.getSession().setAttribute("balance", user.getBalance());
+        }
 
         return pageToShow;
 
