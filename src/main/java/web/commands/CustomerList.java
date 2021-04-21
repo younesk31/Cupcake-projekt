@@ -29,6 +29,7 @@ public class CustomerList extends CommandProtectedPage {
 
 
         // TODO: 21-04-2021 skal laves senere
+
         for (User user : customerList) {
 
             System.out.println(user.getBalance());
