@@ -7,6 +7,7 @@ import business.services.UserFacade;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ClistCommands extends CommandProtectedPage {
@@ -24,20 +25,17 @@ public class ClistCommands extends CommandProtectedPage {
 
         List<User> customerList = (List<User>) request.getSession().getAttribute("customerList");
 
-        String balance = request.getParameter("balance");
-
         // edits item if edit button was pressed
         String edit = request.getParameter("edit");
         if (edit != null)
         {
-            for(User u : customerList){
-                if(u.getId() == Integer.parseInt(edit)) {
-
-                    u.setBalance(Double.parseDouble(balance));
-
-                    cupcakeFacade.updateBalance(Double.parseDouble(balance), u.getId());
-                }
-            }
+            String[] balances = request.getParameterValues("balance");
+            int i = Integer.parseInt(edit);
+            double balance = Double.parseDouble(balances[i]);
+            User u = customerList.get(i);
+            
+            u.setBalance(balance);
+            cupcakeFacade.updateBalance(balance, u.getId());
         }
 
         String delete = request.getParameter("delete");

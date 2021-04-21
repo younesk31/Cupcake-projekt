@@ -24,13 +24,13 @@
                     <br>
                 </tr>
                 </thead>
-                <c:forEach var="clist" items="${sessionScope.customerList}">
+                <c:forEach var="clist" items="${sessionScope.customerList}" varStatus="status">
                     <tr>
                         <td>${clist.id}</td>
                         <td>${clist.email}</td>
 
                         <td><input class="text" type="number" min="0" value="${clist.balance}" name="balance">
-                            <button class="btn btn-success editbtn" type="submit" name="edit" value="${clist.id}">save changes</button></td>
+                            <button class="btn btn-success editbtn" type="submit" name="edit" value="${status.index}">save changes</button></td>
                         <td><button class="btn btn-danger editbtn" type="submit" name="delete" value="${clist.id}">delete user </button></td>
                         <td><button class="btn btn-outline-info editbtn" type="submit" name="olist" value="${clist.id}">see orders</button></td>
 <%--                         <td>${clist.customer.orders}</td> --%>
