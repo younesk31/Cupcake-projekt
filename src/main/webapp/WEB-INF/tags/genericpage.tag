@@ -51,7 +51,7 @@
 
             <a class="navbar-brand mb-0 h1 text-dark" href="${pageContext.request.contextPath}/fc/aboutus">Om os</a>
             <c:if test="${sessionScope.role == 'customer' }">
-                <a class="navbar-brand mb-0 h1 text-dark" href="#">Mine ordre</a>
+                <a class="navbar-brand mb-0 h1 text-dark" href="${pageContext.request.contextPath}/fc/showmyorders">Mine ordre</a>
                 </c:if>
         </div>
 

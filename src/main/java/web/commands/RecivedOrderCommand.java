@@ -37,6 +37,7 @@ public class RecivedOrderCommand extends Command {
             request.getSession().setAttribute("balance", (balance - total));
             user.setBalance(balance - total);
             cupcakeList.clear();
+
         }
 
         if (balance == 0) {
