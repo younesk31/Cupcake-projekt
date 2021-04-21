@@ -34,6 +34,8 @@ public abstract class Command {
         
         commands.put("customerlist", new CustomerList("customerlist", "employee"));
         commands.put("insertorder", new RecivedOrderCommand("orderpage", "customer"));
+        commands.put("clistfunctions", new ClistCommands("customerlist", "employee"));
+
     }
 
     public static Command fromPath(HttpServletRequest request, Database db) {

@@ -12,5 +12,11 @@
         <h1>Hello ${sessionScope.email} </h1>
         You are now logged in as a EMPLOYEE of our wonderful site.
 
+        <div>
+        <c:if test="${sessionScope.role == 'employee' }">
+            <a class="navbar-brand mb-0 h1 text-dark" href="${pageContext.request.contextPath}/fc/customerlist">Customer List</a>
+        </c:if>
+        </div>
+
     </jsp:body>
 </t:genericpage>
