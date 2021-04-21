@@ -4,7 +4,6 @@ public class Bottom {
     private int bottomId;
     private String name;
     private double price;
-    //Soren Hacker! 
 
     public Bottom(int bottomId, String name, double price) {
         this.bottomId = bottomId;
