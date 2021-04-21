@@ -15,11 +15,8 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-<<<<<<< HEAD
-      <module name="Cupcake-projekt" options="-endorseddirs C:\Users\libom\OneDrive\Skrivebord\Cupcake-projekt\Cupcake-projekt\target/endorsed" />
-=======
+
       <module name="Cupcake-projekt" options="-endorseddirs C:\Users\SørenBendtsen\Documents\Cupcake-projekt\target/endorsed" />
->>>>>>> soren
     </option>
   </component>
 </project>
