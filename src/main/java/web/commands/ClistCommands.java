@@ -1,8 +1,10 @@
 package web.commands;
 
+import business.entities.OrderListing;
 import business.entities.User;
 import business.exceptions.UserException;
 import business.services.CupcakeFacade;
+import business.services.OrderListingFacade;
 import business.services.UserFacade;
 
 import javax.servlet.http.HttpServletRequest;
@@ -46,6 +48,23 @@ public class ClistCommands extends CommandProtectedPage {
             userFacade.deleteUser(Integer.parseInt(delete));
 
         }
+
+        String olist = request.getParameter("olist");
+
+        if(olist != null){
+
+            int user_id = Integer.parseInt(olist);
+            OrderListingFacade orderListingFacade = new OrderListingFacade(database);
+
+            List<OrderListing> orderListings = orderListingFacade.getOrdersByUserID(user_id);
+
+            request.setAttribute("userOrderListings",orderListings);
+
+            return "showcustomerorders";
+
+        }
+
+
 
         return pageToShow;
     }
