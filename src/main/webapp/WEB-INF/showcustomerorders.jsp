@@ -32,8 +32,8 @@
             <c:forEach var="orders" items="${requestScope.orderListings}">
 
             <tr>
-                <th>Ordre nr: <c:out value="${requestScope.orderListings.get(requestScope.order-1).order_id}"/></th>
-                <th>Oprettet: <c:out value="${requestScope.orderListings.get(requestScope.order-1).created}"/></th>
+                <th>Ordre nr: <c:out value="${orders.order_id}"/></th>
+                <th>Oprettet: <c:out value="${orders.created}"/></th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -45,12 +45,12 @@
                 <th>priser</th>
                 <th></th>
             </tr>
-            <c:forEach var="repeta" items="${requestScope.orderListings.get(requestScope.order-1).cupcakeList}">
+            <c:forEach var="orderLine" items="${orders.cupcakeList}">
                 <tr>
-                    <td>${repeta.top.name}</td>
-                    <td>${repeta.bottom.name}</td>
-                    <td>${repeta.quantity}</td>
-                    <td>${repeta.price}</td>
+                    <td>${orderLine.top.name}</td>
+                    <td>${orderLine.bottom.name}</td>
+                    <td>${orderLine.quantity}</td>
+                    <td>${orderLine.price}</td>
                     <td></td>
                 </tr>
             </c:forEach>
@@ -59,7 +59,7 @@
                 <th></th>
                 <th></th>
                 <th></th>
-                <th>Subtotal: <c:out value="${requestScope.orderListings.get(requestScope.order-1).orderTotal}"/></th>
+                <th>Ordre total: ${orders.orderTotal}"/></th>
             </tr>
         </table>
         </c:forEach>
