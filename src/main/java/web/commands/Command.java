@@ -27,17 +27,16 @@ public abstract class Command {
         commands.put("customerpage", new CommandProtectedPage("customerpage", "customer"));
         commands.put("orderpage", new CommandProtectedPage("orderpage", "customer"));
         commands.put("employeepage", new CommandProtectedPage("employeepage", "employee"));
-        
         commands.put("updateBasket", new UpdateBasketCommand("orderpage", "customer"));
         commands.put("showcart", new ShowCartCommand("showcart", "customer"));
         commands.put("updatequantity", new UpdateQuantityCommand("showcart", "customer"));
-        
         commands.put("customerlist", new CustomerList("customerlist", "employee"));
         commands.put("insertorder", new RecivedOrderCommand("orderpage", "customer"));
         commands.put("clistfunctions", new ClistCommands("customerlist", "employee"));
 
         commands.put("showmyorders", new ShowMyOrdersCommand("showmyorders", "customer"));
         commands.put("showmyorderid", new UpdateOrderCommand("showmyorders", "customer"));
+        commands.put("showcustomerorders", new ShowCustomerOrders("showcustomerorders", "employee"));
 
     }
 
