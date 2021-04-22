@@ -1,44 +1,37 @@
 package web.commands;
 
-import business.entities.Cupcake;
+import business.entities.OrderListing;
 import business.entities.User;
 import business.exceptions.UserException;
+import business.services.OrderListingFacade;
 import business.services.UserFacade;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
+public class ShowCustomerOrders extends CommandProtectedPage{
+    OrderListingFacade orderListingFacade = new OrderListingFacade(database);
+    UserFacade userFacade = new UserFacade(database);
 
-public class CustomerList extends CommandProtectedPage {
-    private UserFacade userFacade;
-
-    public CustomerList(String pageToShow,String role) {
+    public ShowCustomerOrders(String pageToShow, String role) {
         super(pageToShow, role);
-        userFacade = new UserFacade(database);
 
     }
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws UserException {
 
+        int user_id = (Integer)request.getSession().getAttribute("user_id");
 
         List<User> customerList = userFacade.getAllUsers();
-
         request.getSession().setAttribute("customerList", customerList);
 
+        List<OrderListing> orderListings = orderListingFacade.getOrdersByUserID(user_id);
 
-        // TODO: 21-04-2021 skal laves senere
-
-        for (User user : customerList) {
-
-            System.out.println(user.getBalance());
-            request.getSession().setAttribute("balance", user.getBalance());
-        }
-
+        request.setAttribute("orderListings",orderListings);
         return pageToShow;
-
     }
 
-    public  String getRole() { return role;}
+
 }

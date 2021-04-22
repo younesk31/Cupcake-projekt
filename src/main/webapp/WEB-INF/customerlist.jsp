@@ -10,7 +10,7 @@
     </jsp:attribute>
     <jsp:body>
 
-        <div>
+            <form action="${pageContext.request.contextPath}/fc/clistfunctions">
             <table class="table table-striped table-dark table-hover ">
                 <thead>
                 <tr>
@@ -21,22 +21,26 @@
                     <th scope="col"></th>
 <%--                    <th scope="col">Number of Orders</th>--%>
 <%--                    <th scope="col">Generated Revenue</th>--%>
+                    <br>
                 </tr>
                 </thead>
-                <c:forEach var="clist" items="${sessionScope.customerList}">
+                <c:forEach var="clist" items="${sessionScope.customerList}" varStatus="status">
                     <tr>
                         <td>${clist.id}</td>
                         <td>${clist.email}</td>
-                        <td>${clist.balance}<button class="editbtn">edit</button></td>
-                        <td><button class="editbtn">delete user</button></td>
-                        <td><button class="editbtn">see orders</button></td>
+
+                        <td><input class="text" type="number" min="0" value="${clist.balance}" name="balance">
+                            <button class="btn btn-success editbtn" type="submit" name="edit" value="${status.index}">save changes</button></td>
+                        <td><button class="btn btn-danger editbtn" type="submit" name="delete" value="${clist.id}">delete user </button></td>
+                        <td><button class="btn btn-outline-info editbtn" type="submit" name="olist" value="${clist.id}">see orders</button></td>
 <%--                         <td>${clist.customer.orders}</td> --%>
 <%--                         <td>${clist.customer.revenue}</td>--%>
-                    <br></tr>
+
+                        <br>
+                    </tr>
                 </c:forEach>
             </table>
-
-        </div>
+        </form>
 
 
             <c:if test="${requestScope.error != null }">

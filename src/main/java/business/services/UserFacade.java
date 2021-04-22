@@ -27,4 +27,10 @@ public class UserFacade {
     public List<User> getAllUsers() throws UserException {
         return userMapper.getAllUsers();
     }
+
+    public int deleteUser(int user_id) throws UserException {
+        return userMapper.deleteUser(user_id);
+    }
+
+
 }

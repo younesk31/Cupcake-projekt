@@ -4,13 +4,19 @@
 
 <t:genericpage>
     <jsp:attribute name="header">
-         Demo Page for Employee Roles
+         Admin Siden
     </jsp:attribute>
     <jsp:attribute name="footer">
     </jsp:attribute>
     <jsp:body>
-        <h1>Hello ${sessionScope.email} </h1>
-        You are now logged in as a EMPLOYEE of our wonderful site.
+        <h1>Hej ${sessionScope.role} </h1>
+
+        <div>
+        <c:if test="${sessionScope.role == 'employee' }">
+            <a class="navbar-brand mb-0 h1 text-dark" href="${pageContext.request.contextPath}/fc/customerlist">Customer List</a>
+            <a class="navbar-brand mb-0 h1 text-dark" href="${pageContext.request.contextPath}/fc/showcustomerorders">Order Lists</a>
+        </c:if>
+        </div>
 
     </jsp:body>
 </t:genericpage>
