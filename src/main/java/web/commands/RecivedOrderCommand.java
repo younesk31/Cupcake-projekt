@@ -38,11 +38,9 @@ public class RecivedOrderCommand extends Command {
             user.setBalance(balance - total);
             cupcakeList.clear();
 
-        }
-
-        if (balance == 0) {
+        } else if (total > balance) {
             request.setAttribute("error", "Din saldo er for lav!");
-            return "index";
+            return "showcart";
         }
 
         return pageToShow;

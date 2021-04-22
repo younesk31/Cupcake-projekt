@@ -29,12 +29,12 @@ public class RegisterCommand extends CommandUnprotectedPage {
             session.setAttribute("email", email);
             session.setAttribute("user", user);
             session.setAttribute("role", user.getRole());
-            //return user.getRole() + "page";
+
             return "orderpage";
 
         } else {
 
-            request.setAttribute("error", "the two passwords did not match");
+            request.setAttribute("error", "Den ene kode passer ikke med den anden!");
             return "registerpage";
         }
     }

@@ -8,42 +8,35 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UpdateQuantityCommand extends CommandProtectedPage
-{
+public class UpdateQuantityCommand extends CommandProtectedPage {
     public UpdateQuantityCommand(String pageToShow, String role)
     {
         super(pageToShow, role);
     }
     
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws UserException
-    {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws UserException {
         List<Cupcake> cupcakeList = (List<Cupcake>) request.getSession().getAttribute("cupcakeList");
         List<Integer> quantityList = new ArrayList<>();
         
-        try
-        {
-            for (String quantity : request.getParameterValues("quantity"))
-            {
+        try {
+            for (String quantity : request.getParameterValues("quantity")) {
                 quantityList.add(Integer.parseInt(quantity));
             }
         }
-        catch (NumberFormatException e)
-        {
+        catch (NumberFormatException e) {
             request.setAttribute("error", "Antal skal være et tal.");
             return pageToShow;
         }
     
         // sets all quantities in cart to quantities from form
-        for (int i = 0; i < cupcakeList.size(); ++i)
-        {
+        for (int i = 0; i < cupcakeList.size(); ++i) {
             cupcakeList.get(i).setQuantity(quantityList.get(i));
         }
     
         // removes item if remove button was pressed
         String remove = request.getParameter("remove");
-        if (remove != null)
-        {
+        if (remove != null) {
             cupcakeList.remove(Integer.parseInt(remove));
 //            quantityList.remove(Integer.parseInt(remove));
         }
@@ -55,8 +48,7 @@ public class UpdateQuantityCommand extends CommandProtectedPage
         double total = 0;
     
         // TODO duplicate code.
-        if (cupcakeList != null)
-        {
+        if (cupcakeList != null) {
             for (Cupcake cupcake : cupcakeList) {
                 total += cupcake.getPrice();
             }
