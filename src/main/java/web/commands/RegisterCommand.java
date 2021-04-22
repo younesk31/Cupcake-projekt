@@ -34,7 +34,7 @@ public class RegisterCommand extends CommandUnprotectedPage {
 
         } else {
 
-            request.setAttribute("error", "the two passwords did not match");
+            request.setAttribute("error", "Den ene kode passer ikke med den anden!");
             return "registerpage";
         }
     }

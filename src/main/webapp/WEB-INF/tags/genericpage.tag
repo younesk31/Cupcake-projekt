@@ -70,7 +70,7 @@
                 </c:if>
                 <c:if test="${sessionScope.user == null }">
                     <a type="button" class="btn btn-sm  btn btn-outline-dark" href="${pageContext.request.contextPath}/fc/loginpage">Log ind</a>
-                    <a type="button" class="btn btn-sm  btn btn-outline-success" href="${pageContext.request.contextPath}/fc/registerpage">Register</a>
+                    <a type="button" class="btn btn-sm  btn btn-outline-success" href="${pageContext.request.contextPath}/fc/registerpage">Registrer</a>
                 </c:if>
             </c:if>
             <c:if test="${sessionScope.role == 'customer' }">

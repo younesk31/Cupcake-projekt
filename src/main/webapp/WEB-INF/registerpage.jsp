@@ -14,7 +14,7 @@
                 <div class="row mb-3">
                     <label class="col-form-label" for="email">Email</label>
                     <div class="col-sm-4">
-                        <input id="email" class="form-control" type="text" name="email" value="${param.email}" placeholder="Enter a valid email">
+                        <input id="email" class="form-control" type="email" name="email" value="${param.email}" placeholder="Enter a valid email">
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label class="col-form-label" for="password2">Repeat Password</label>
+                    <label class="col-form-label" for="password2">Gentag Password</label>
                     <div class="col-sm-4">
                         <input id="password2" class="form-control" type="password" name="password2" value="${param.password2}"  placeholder="Repeat the password">
                     </div>
