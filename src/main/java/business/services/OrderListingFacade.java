@@ -21,4 +21,8 @@ public class OrderListingFacade {
     public int deleteOrder(int order_id) throws UserException{
         return orderMapper.deleteOrder(order_id);
     }
+
+    public int UpdateOrder(int order_id) throws UserException{
+        return orderMapper.UpdateOrder(order_id);
+    }
 }

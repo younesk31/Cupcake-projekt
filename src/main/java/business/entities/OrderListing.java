@@ -13,14 +13,16 @@ public class OrderListing {
     private List<Cupcake> cupcakeList;
     private double orderTotal;
     private Timestamp created;
+    private boolean isdelivered;
 
-    public OrderListing(int order_id, int user_id, String email, List<Cupcake> cupcakeList, double orderTotal, Timestamp created) {
+    public OrderListing(int order_id, int user_id, String email, List<Cupcake> cupcakeList, double orderTotal, Timestamp created, boolean isdelivered) {
         this.order_id = order_id;
         this.user_id = user_id;
         this.email = email;
         this.cupcakeList = cupcakeList;
         this.orderTotal = orderTotal;
         this.created = created;
+        this.isdelivered = isdelivered;
     }
 
     public int getOrder_id() {
@@ -45,5 +47,9 @@ public class OrderListing {
 
     public Timestamp getCreated() {
         return created;
+    }
+
+    public boolean isIsdelivered() {
+        return isdelivered;
     }
 }

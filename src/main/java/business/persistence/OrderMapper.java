@@ -20,7 +20,6 @@ public class OrderMapper {
     }
 
 
-
     public List<OrderListing> getOrdersByUserID(int user_Id) throws UserException {
         try (Connection connection = database.connect()) {
             String sql = "SELECT o.*, u.email FROM orders o JOIN users u ON o.user_id = u.user_id WHERE u.user_id = ?";
@@ -35,8 +34,9 @@ public class OrderMapper {
                     Timestamp created = rs.getTimestamp("created");
                     double orderTotal = rs.getDouble("total");
                     String email = rs.getString("email");
+                    boolean isDelivered = rs.getBoolean("isDelivered");
 
-                    OrderListing orderListing = new OrderListing(order_id,user_Id,email,getOrderLine(order_id),orderTotal,created);
+                    OrderListing orderListing = new OrderListing(order_id, user_Id, email, getOrderLine(order_id), orderTotal, created, isDelivered);
 
                     orderListings.add(orderListing);
                 }
@@ -64,9 +64,9 @@ public class OrderMapper {
 
                     int quantity = rs.getInt("quantity");
 
-                    Top top = new Top(rs.getInt("toppings_id"),rs.getString("topping"),rs.getDouble("t.price"));
-                    Bottom bottom = new Bottom(rs.getInt("bottom_id"),rs.getString("bottom"), rs.getDouble("b.price"));
-                    Cupcake cupcake = new Cupcake(bottom,top,quantity);
+                    Top top = new Top(rs.getInt("toppings_id"), rs.getString("topping"), rs.getDouble("t.price"));
+                    Bottom bottom = new Bottom(rs.getInt("bottom_id"), rs.getString("bottom"), rs.getDouble("b.price"));
+                    Cupcake cupcake = new Cupcake(bottom, top, quantity);
                     cupcake.setPrice(top.getPrice() + bottom.getPrice());
 
                     cupcakeList.add(cupcake);
@@ -87,7 +87,7 @@ public class OrderMapper {
 
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
-                ps.setInt(1,order_id);
+                ps.setInt(1, order_id);
                 int rowsAffected = ps.executeUpdate();
                 return rowsAffected;
 
@@ -98,6 +98,25 @@ public class OrderMapper {
             throw new UserException("Connection to database could not be established");
         }
 
+    }
+
+    public int UpdateOrder(int order_id) throws UserException {
+        try (Connection connection = database.connect()) {
+            String sql = "UPDATE orders SET isDelivered = 1 WHERE order_id = ?";
+
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+
+                ps.setInt(1, order_id);
+                int rowsAffected = ps.executeUpdate();
+
+                return rowsAffected;
+
+            } catch (SQLException ex) {
+                throw new UserException(ex.getMessage());
+            }
+        } catch (SQLException ex) {
+            throw new UserException("Connection to database could not be established");
+        }
     }
 
 }
