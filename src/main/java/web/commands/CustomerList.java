@@ -28,8 +28,6 @@ public class CustomerList extends CommandProtectedPage {
         request.getSession().setAttribute("customerList", customerList);
 
 
-        // TODO: 21-04-2021 skal laves senere
-
         for (User user : customerList) {
 
             System.out.println(user.getBalance());

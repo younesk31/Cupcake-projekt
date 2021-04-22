@@ -30,11 +30,8 @@ public class AuthorizationFilter implements Filter {
                 String roleFromCommand = ((CommandProtectedPage) command).getRole();
                 if (session == null || session.getAttribute("user") == null) {
 
-                    handleIllegalAccess(
-                            req,
-                            res,
-                            FailingStrategy.HARD_ERROR,
-                            "You are not authenticated. Please login first",
+                    handleIllegalAccess(req, res, FailingStrategy.HARD_ERROR,
+                            "Ingen adgang. Vær venlig at logge ind først",
                             401);
                     return;
 
@@ -42,14 +39,14 @@ public class AuthorizationFilter implements Filter {
 
                     String role = (String) session.getAttribute("role");
                     if (role == null || !role.equals(roleFromCommand)) {
-                        handleIllegalAccess(req, res, FailingStrategy.REDIRECT_TO_LOGIN, "Attempt to call a resource you are not authorized to view ", 403);
+                        handleIllegalAccess(req, res, FailingStrategy.REDIRECT_TO_LOGIN, "Hov hov kammarat check url'en", 403);
                         return;
                     }
                 }
             }
         }
 
-        //Prevents users, who has logged out, to use the back-button and see pages they could see, while logged in
+//        Prevents users, who has logged out, to use the back-button and see pages they could see, while logged in
 //        res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
 //        res.setHeader("Pragma", "no-cache"); // HTTP 1.0.
 //        res.setDateHeader("Expires", 0); // Proxies.
@@ -60,7 +57,7 @@ public class AuthorizationFilter implements Filter {
     private void handleIllegalAccess(HttpServletRequest req, HttpServletResponse res, FailingStrategy fs, String msg, int errCode) throws IOException, ServletException {
         if (fs == FailingStrategy.REDIRECT_TO_LOGIN) {
             req.setAttribute("error", msg);
-            req.getRequestDispatcher("/WEB-INF/loginpage.jsp").forward(req, res);
+            req.getRequestDispatcher("/WEB-INF/index.jsp").forward(req, res);
         } else {
             res.sendError(errCode);
         }
@@ -69,8 +66,5 @@ public class AuthorizationFilter implements Filter {
     public void destroy() {
     }
 
-    private enum FailingStrategy {
-        REDIRECT_TO_LOGIN,
-        HARD_ERROR
-    }
+    private enum FailingStrategy {REDIRECT_TO_LOGIN, HARD_ERROR}
 }

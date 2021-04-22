@@ -29,7 +29,7 @@ public class RegisterCommand extends CommandUnprotectedPage {
             session.setAttribute("email", email);
             session.setAttribute("user", user);
             session.setAttribute("role", user.getRole());
-            //return user.getRole() + "page";
+
             return "orderpage";
 
         } else {

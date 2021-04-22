@@ -64,6 +64,9 @@
                 </div>
             </div>
         </div>
+        <c:if test="${requestScope.error != null }">
+            <p style="color:red">${requestScope.error}</p>
+        </c:if>
 
     </jsp:body>
 </t:genericpage>

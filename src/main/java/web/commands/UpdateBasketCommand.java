@@ -46,8 +46,8 @@ public class UpdateBasketCommand extends CommandProtectedPage {
 
             request.getSession().setAttribute("cupcakeList", cupcakeList);
 
-        } catch (UserException ex) {
-            request.setAttribute("error", "Kunne ikke opdatere kurven!");
+        } catch (UserException | NumberFormatException ex) {
+            request.setAttribute("error", "Du mangler at vælge noget!");
             return pageToShow;
         }
         return pageToShow;

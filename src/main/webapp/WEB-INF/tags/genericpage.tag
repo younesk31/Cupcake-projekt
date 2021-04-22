@@ -14,8 +14,7 @@
         <jsp:invoke fragment="header"/>
     </title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/styles.css">
     <meta name="theme-color" content="#7952b3">
 </head>
@@ -28,7 +27,7 @@
 <div class="page-header">
 
     <div class="card-body mb-0">
-        <img class="card-img-top" src="${pageContext.request.contextPath}/images/logo.png" alt="Card image cap">
+        <a href="<%=request.getContextPath()%>"><img class="card-img-top" src="${pageContext.request.contextPath}/images/logo.png" alt="Card image cap"></a>
     </div>
 </div>
 
@@ -74,12 +73,13 @@
                     <a type="button" class="btn btn-sm  btn btn-outline-success" href="${pageContext.request.contextPath}/fc/registerpage">Register</a>
                 </c:if>
             </c:if>
-            <c:if test="${sessionScope.user != null }">
-            <a class="p-2 text-dark" href="${pageContext.request.contextPath}/fc/showcart"> <img src="https://icons.getbootstrap.com/assets/icons/basket.svg" width="30" height="30" class="d-inline-block align-top" alt=""></a>
+            <c:if test="${sessionScope.role == 'customer' }">
+                <a class="p-2 text-dark" href="${pageContext.request.contextPath}/fc/showcart"><img src="https://icons.getbootstrap.com/assets/icons/basket.svg" width="30" height="30" class="d-inline-block align-top" alt=""></a>
+                <c:if test="${sessionScope.balance != null }">
+                    Saldo: ${sessionScope.balance}
+                </c:if>
             </c:if>
-            <c:if test="${sessionScope.user.balance != null }">
-                Saldo: ${sessionScope.user.balance}
-            </c:if>
+
         </nav>
     </header>
 </div>
@@ -90,10 +90,10 @@
 </div>
 
 <!-- Footer -->
-<div class="container">
-    <br/>
-    <hr>
-    Olsker Cupcakes® 2021
+<div class="card-body">
+
+    <hr >
+    Copyright &copy Olsker Cupcakes - 2021
     <br/>
     <jsp:invoke fragment="footer"/>
 </div>

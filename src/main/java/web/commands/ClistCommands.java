@@ -7,6 +7,8 @@ import business.services.CupcakeFacade;
 import business.services.OrderListingFacade;
 import business.services.UserFacade;
 
+import javax.el.ELException;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
@@ -29,8 +31,7 @@ public class ClistCommands extends CommandProtectedPage {
 
         // edits item if edit button was pressed
         String edit = request.getParameter("edit");
-        if (edit != null)
-        {
+        if (edit != null) {
             String[] balances = request.getParameterValues("balance");
             int i = Integer.parseInt(edit);
             double balance = Double.parseDouble(balances[i]);
@@ -38,30 +39,42 @@ public class ClistCommands extends CommandProtectedPage {
             
             u.setBalance(balance);
             cupcakeFacade.updateBalance(balance, u.getId());
+
+            request.setAttribute("error", "Bruger: "+ customerList.get(i).getEmail() +" Balance er ændret til " + balance);
         }
 
         String delete = request.getParameter("delete");
-        if(delete != null)
-        {
-            customerList.removeIf(u -> u.getId() == Integer.parseInt(delete));
+        if(delete != null) {
+            if (Integer.parseInt(delete) != this.userFacade.getAllUsers().get(1).getId()) {
+                customerList.removeIf(u -> u.getId() == Integer.parseInt(delete));
 
-            userFacade.deleteUser(Integer.parseInt(delete));
+                userFacade.deleteUser(Integer.parseInt(delete));
 
+                request.setAttribute("error", "Brugeren er nu blevet slettet!");
+            } else {
+                request.setAttribute("error", "Kan ikke slette en Admin konto!");
+                return "customerlist";
+            }
         }
 
         String olist = request.getParameter("olist");
 
         if(olist != null){
-
             int user_id = Integer.parseInt(olist);
-            OrderListingFacade orderListingFacade = new OrderListingFacade(database);
+            if (user_id != this.userFacade.getAllUsers().get(1).getId()){
 
-            List<OrderListing> orderListings = orderListingFacade.getOrdersByUserID(user_id);
+                OrderListingFacade orderListingFacade = new OrderListingFacade(database);
 
-            request.setAttribute("userOrderListings",orderListings);
+                List<OrderListing> orderListings = orderListingFacade.getOrdersByUserID(user_id);
 
-            return "showcustomerorders";
+                request.setAttribute("userOrderListings", orderListings);
 
+                return "showcustomerorders";
+
+            } else {
+                request.setAttribute("error", "Admin ordrer findes ikke!");
+                return "customerlist";
+            }
         }
 
 
