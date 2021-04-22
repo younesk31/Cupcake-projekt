@@ -37,6 +37,7 @@ public abstract class Command {
         commands.put("showmyorders", new ShowMyOrdersCommand("showmyorders", "customer"));
 
         commands.put("showcustomerorders", new ShowCustomerOrders("showcustomerorders", "employee"));
+        commands.put("deleteOrder", new DeleteOrder("showcustomerorders","employee"));
 
     }
 

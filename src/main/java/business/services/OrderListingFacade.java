@@ -17,4 +17,8 @@ public class OrderListingFacade {
     public List<OrderListing> getOrdersByUserID(int user_Id) throws UserException {
         return orderMapper.getOrdersByUserID(user_Id);
     }
+
+    public int deleteOrder(int order_id) throws UserException{
+        return orderMapper.deleteOrder(order_id);
+    }
 }

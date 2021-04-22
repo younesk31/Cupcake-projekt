@@ -81,4 +81,23 @@ public class OrderMapper {
         }
     }
 
+    public int deleteOrder(int order_id) throws UserException {
+        try (Connection connection = database.connect()) {
+            String sql = "DELETE FROM orders WHERE order_id = ?";
+
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+
+                ps.setInt(1,order_id);
+                int rowsAffected = ps.executeUpdate();
+                return rowsAffected;
+
+            } catch (SQLException ex) {
+                throw new UserException(ex.getMessage());
+            }
+        } catch (SQLException ex) {
+            throw new UserException("Connection to database could not be established");
+        }
+
+    }
+
 }

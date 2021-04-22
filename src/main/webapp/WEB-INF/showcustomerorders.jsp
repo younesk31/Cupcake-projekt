@@ -20,7 +20,14 @@
                         <th>Ordrer nr: <c:out value="#${order.order_id}"/></th>
                         <th>Oprettet: <c:out value="${order.created}"/></th>
                         <th>Navn: ${order.email} </th>
-                        <th></th>
+                        <form action="${pageContext.request.contextPath}/fc/deleteOrder" method="post">
+                            <th>
+                                <button onclick="" class="btn btn-danger editbtn" type="submit" name="deleteOrder"
+                                        value="${order.order_id}">delete order
+                                </button>
+                                <input type="hidden" name="user_id" value="${order.user_id}">
+                            </th>
+                        </form>
                         <th></th>
                     </tr>
                     <tr>
