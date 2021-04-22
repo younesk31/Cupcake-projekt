@@ -38,22 +38,25 @@
                 </c:forEach>
             </table>
 
+
             <c:if test="${requestScope.error != null}">
                 <p style="color: red">${requestScope.error}</p>
             </c:if>
-
+            <div class="card">
             <c:if test="${sessionScope.cupcakeList != null && not empty sessionScope.cupcakeList && sessionScope.total != null}">
-
                 <input type="submit" class="btn btn-outline-primary" name="updateQuantity" value="Opdater kurv">
-
-                <a class="p-2 text-dark" href="${pageContext.request.contextPath}/fc/insertorder">
-                    <button class="btn btn-outline-success">Tryk her for at betale</button>
-                </a>
-
-                <p class="h3">Total: ${sessionScope.total}</p>
-
-
             </c:if>
+            </div>
         </form>
+
+
+        <c:if test="${sessionScope.cupcakeList != null && not empty sessionScope.cupcakeList && sessionScope.total != null}">
+            <div class="card">
+                <a href="${pageContext.request.contextPath}/fc/insertorder" class="btn btn-outline-success" role="button">Tryk her for at betale</a>
+            </div>
+            <p class="h3">Total: ${sessionScope.total}</p>
+
+        </c:if>
+
     </jsp:body>
 </t:genericpage>

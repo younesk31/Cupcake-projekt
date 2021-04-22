@@ -13,52 +13,44 @@
         Her er dine tidligere ordre!
         <%--  ${order.cupcakeList.size()} --%>
 
-        <form action="${pageContext.request.contextPath}/fc/showmyorderid" method="post">
-            <select class="form-select" name="orderid" id="orderid" aria-label="Default select example">
-                <option selected>Vælg dit ordre nummer:</option>
-                 <c:forEach var="order" items="${requestScope.userOrderListings}">
-                        <option value="${order.order_id}">${order.order_id}</option>
-                    </c:forEach>
-            </select>
-                <button id="order" type="submit" class="btn btn-primary btn-sm">Vis denne ordre</button>
-        </form>
 
-        <br>
-
-        <c:if test="${requestScope.order != null && not empty requestScope.order && requestScope.order != null}">
-        <table class="table table-dark table-hover">
-            <tr>
-                <th>Ordre nr: <c:out value="${requestScope.userOrderListings.get(requestScope.order-1).order_id}"/></th>
-                <th>Oprettet: <c:out value="${requestScope.userOrderListings.get(requestScope.order-1).created}"/></th>
-                <th></th>
-                <th></th>
-                <th></th>
-            </tr>
-            <tr>
-                <th>Topping</th>
-                <th>Bund</th>
-                <th>Antal</th>
-                <th>priser</th>
-                <th></th>
-            </tr>
-            <c:forEach var="repeta" items="${requestScope.userOrderListings.get(requestScope.order-1).cupcakeList}">
+        <c:forEach var="order" items="${requestScope.userOrderListings}">
+            <c:if test="${order != null && not empty order}">
+            <table class="table table-dark table-hover">
                 <tr>
-                    <td>${repeta.top.name}</td>
-                    <td>${repeta.bottom.name}</td>
-                    <td>${repeta.quantity}</td>
-                    <td>${repeta.price}</td>
-                    <td></td>
+                 <th>Ordrer nr: <c:out value="#${order.order_id}"/></th>
+                    <th>Oprettet: <c:out value="${order.created}"/></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                 </tr>
-            </c:forEach>
-            <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th>Subtotal: <c:out value="${requestScope.userOrderListings.get(requestScope.order-1).orderTotal}"/></th>
-            </tr>
-        </table>
-        </c:if>
+                <tr>
+                 <th>Topping</th>
+                    <th>Bund</th>
+                    <th>Antal</th>
+                    <th>priser</th>
+                    <th></th>
+                </tr>
+                <c:forEach var="repeat" items="${order.cupcakeList}">
+                    <tr>
+                        <td>${repeat.top.name}</td>
+                        <td>${repeat.bottom.name}</td>
+                        <td>${repeat.quantity}</td>
+                        <td>${repeat.price}</td>
+                        <td></td>
+                    </tr>
+                </c:forEach>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>Subtotal: <c:out value="${order.orderTotal}"/></th>
+                </tr>
+            </table>
+            </c:if>
+        </c:forEach>
+
 
     </jsp:body>
 </t:genericpage>

@@ -14,47 +14,35 @@
 
     <jsp:body>
 
-        <div>
-            <div class="card">
-                <div class="card-body">
-                    <h6 class="font-weight-bold display-2">Velkommen ombord</h6>
-                    <div class="row-6">
-
-                        <h3>Udvalg af bunde</h3>
-                        <c:forEach var="bunde" items="${applicationScope.bottomList}">
-                            ${bunde.bottomId} - ${bunde.name} - ${bunde.price},-<br>
-                        </c:forEach>
-
-                        <h3>Udvalg af toppings</h3>
-                        <c:forEach var="topping" items="${applicationScope.topList}">
-                            ${topping.topId} - ${topping.name} - ${topping.price},-<br>
-                        </c:forEach>
+        <h6 class="font-weight-bold display-2">Velkommen ombord</h6>
+        <div class="row">
+            <div class="col-6">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="col">
+                            <h3>Udvalg af bunde</h3>
+                            <c:forEach var="bunde" items="${applicationScope.bottomList}">
+                                ${bunde.bottomId} - ${bunde.name} - ${bunde.price},-<br>
+                            </c:forEach>
+                            <h3>Udvalg af toppings</h3>
+                            <c:forEach var="topping" items="${applicationScope.topList}">
+                                ${topping.topId} - ${topping.name} - ${topping.price},-<br>
+                            </c:forEach>
+                        </div>
                     </div>
-
-                    <div style="margin-top: 5em;" class="container row-3">
-                        <form name="login" action="${pageContext.request.contextPath}/fc/logincommand"  method="POST">
-                            <div class="row mb-3">
-                                <label class="col-sm-1 col-form-label" for="email">Email</label>
-                                <div class="col-sm-4">
-                                    <input class="form-control" id="email" type="text" name="email" placeholder="someone@nowhere.com">
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label class="col-sm-1 col-form-label" for="password">Password</label>
-                                <div class="col-sm-4">
-                                    <input class="form-control" id="password" type="password" name="password" placeholder="sesam">
-                                </div>
-                            </div>
-                            <c:if test="${requestScope.error != null }">
-                                <p style="color:red">
-                                        ${requestScope.error}
-                                </p>
-                            </c:if>
-
-                            <c:if test="${not empty param.msg}">
-                                <p style="font-size: large">${param.msg}</p>
-                            </c:if>
-                            <button class="btn btn-primary" type="submit" value="Login">log ind</button>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <form name="login" action="${pageContext.request.contextPath}/fc/logincommand" method="POST">
+                            <label class="col-form-label" for="email">Email</label>
+                            <input class="form-control" id="email" type="text" name="email" placeholder="someone@nowhere.com">
+                            <label class="col-form-label" for="password">Password</label>
+                            <input class="form-control" id="password" type="password" name="password" placeholder="password"><br>
+                            <c:if test="${not empty param.msg}"><p style="font-size: large">${param.msg}</p></c:if>
+                            <button class="btn btn-primary" type="submit" value="Login">Log ind</button>
+                            <c:if test="${requestScope.error != null }"><p style="color:red">${requestScope.error}</p></c:if>
                         </form>
                     </div>
                 </div>

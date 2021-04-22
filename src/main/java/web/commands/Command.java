@@ -37,7 +37,6 @@ public abstract class Command {
         commands.put("clistfunctions", new ClistCommands("customerlist", "employee"));
 
         commands.put("showmyorders", new ShowMyOrdersCommand("showmyorders", "customer"));
-        commands.put("showmyorderid", new UpdateOrderCommand("showmyorders", "customer"));
 
     }
 

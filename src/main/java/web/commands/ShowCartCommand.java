@@ -15,17 +15,13 @@ public class ShowCartCommand extends CommandProtectedPage {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
 
-        //todo make sure that we dont geet nullpointer cause of empty cart
-        //todo reset cart
         List<Cupcake> cupcakeList = (List<Cupcake>) request.getSession().getAttribute("cupcakeList");
         double total = 0;
 
         if (cupcakeList != null) {
-
             for (Cupcake cupcake : cupcakeList) {
                 total += cupcake.getPrice();
             }
-
             request.getSession().setAttribute("total", total);
         }
         return pageToShow;
