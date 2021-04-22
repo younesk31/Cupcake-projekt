@@ -14,9 +14,10 @@ public class User {
 
     }
 
-    public User(int id, String email, double balance) {
+    public User(int id, String email, String role, double balance) {
         this.id = id;
         this.email = email;
+        this.role = role;
         this.balance = balance;
     }
 

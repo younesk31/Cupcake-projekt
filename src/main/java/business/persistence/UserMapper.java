@@ -64,7 +64,7 @@ public class UserMapper {
 
     public List<User> getAllUsers() throws UserException {
         try (Connection connection = database.connect()) {
-            String sql = "SELECT user_id, email, balance FROM users";
+            String sql = "SELECT user_id, email, role, balance FROM users";
 
             List<User> userList = new ArrayList<>();
 
@@ -74,9 +74,10 @@ public class UserMapper {
                 while (rs.next()) {
                     int user_id = rs.getInt("user_id");
                     String email = rs.getString("email");
+                    String role = rs.getString("role");
                     double balance = rs.getDouble("balance");
 
-                    userList.add(new User(user_id, email, balance));
+                    userList.add(new User(user_id, email, role, balance));
                 }
 
             } catch (SQLException ex) {
