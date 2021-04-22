@@ -9,10 +9,9 @@
     <jsp:attribute name="footer">
     </jsp:attribute>
     <jsp:body>
-        <h1>Hej ${sessionScope.email} </h1>
-        Se en kundes ordre liste!
-        <%--  ${order.cupcakeList.size()} --%>
 
+        <h1>Hej ${sessionScope.email} </h1>
+        <p>Her er kundes ordrer!</p>
         <c:forEach var="order" items="${requestScope.userOrderListings}">
             <c:if test="${order != null && not empty order}">
                 <table class="table table-dark table-hover">

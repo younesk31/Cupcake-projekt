@@ -42,7 +42,7 @@ public class LoginCommand extends CommandUnprotectedPage {
 
         } catch (UserException ex) {
             request.setAttribute("error", "Wrong username or password!");
-            return "loginpage";
+            return "index";
         }
     }
 }
