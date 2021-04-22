@@ -11,16 +11,16 @@
 
     <jsp:body>
         <form action="${pageContext.request.contextPath}/fc/updatequantity" method="post">
-            <table class="table table-striped table-dark table-hover ">
-                <thead>
-                <tr>
-                    <th scope="col">Bund</th>
-                    <th scope="col">Topping</th>
-                    <th scope="col">Antal</th>
-                    <th scope="col">Pris</th>
-                    <th></th>
-                </tr>
-                </thead>
+        <table class="table table-striped table-dark table-hover ">
+            <thead>
+            <tr>
+                <th scope="col">Bund</th>
+                <th scope="col">Topping</th>
+                <th scope="col">Antal</th>
+                <th scope="col">Pris</th>
+                <th></th>
+            </tr>
+            </thead>
                 <c:forEach var="cart" items="${sessionScope.cupcakeList}" varStatus="status">
                     <tr>
                         <td>${cart.bottom.name}</td>
@@ -38,7 +38,6 @@
                 </c:forEach>
             </table>
 
-
             <c:if test="${requestScope.error != null}">
                 <p style="color: red">${requestScope.error}</p>
             </c:if>
@@ -48,7 +47,6 @@
             </c:if>
             </div>
         </form>
-
 
         <c:if test="${sessionScope.cupcakeList != null && not empty sessionScope.cupcakeList && sessionScope.total != null}">
             <div class="card">

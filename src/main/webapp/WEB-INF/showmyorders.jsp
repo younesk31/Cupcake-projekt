@@ -13,7 +13,6 @@
         Her er dine tidligere ordre!
         <%--  ${order.cupcakeList.size()} --%>
 
-
         <c:forEach var="order" items="${requestScope.userOrderListings}">
             <c:if test="${order != null && not empty order}">
             <table class="table table-dark table-hover">
@@ -50,7 +49,6 @@
             </table>
             </c:if>
         </c:forEach>
-
 
     </jsp:body>
 </t:genericpage>

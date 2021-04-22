@@ -14,6 +14,7 @@
         <div>
         <c:if test="${sessionScope.role == 'employee' }">
             <a class="navbar-brand mb-0 h1 text-dark" href="${pageContext.request.contextPath}/fc/customerlist">Customer List</a>
+            <a class="navbar-brand mb-0 h1 text-dark" href="${pageContext.request.contextPath}/fc/showcustomerorders">Order Lists</a>
         </c:if>
         </div>
 
