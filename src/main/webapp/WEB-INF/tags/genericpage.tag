@@ -74,7 +74,9 @@
                     <a type="button" class="btn btn-sm  btn btn-outline-success" href="${pageContext.request.contextPath}/fc/registerpage">Register</a>
                 </c:if>
             </c:if>
+            <c:if test="${sessionScope.user != null }">
             <a class="p-2 text-dark" href="${pageContext.request.contextPath}/fc/showcart"> <img src="https://icons.getbootstrap.com/assets/icons/basket.svg" width="30" height="30" class="d-inline-block align-top" alt=""></a>
+            </c:if>
             <c:if test="${sessionScope.user.balance != null }">
                 Saldo: ${sessionScope.user.balance}
             </c:if>
