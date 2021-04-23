@@ -20,7 +20,13 @@
                  <th>Ordrer nr: <c:out value="#${order.order_id}"/></th>
                     <th>Oprettet: <c:out value="${order.created}"/></th>
                     <th></th>
-                    <th></th>
+                    <th>Status:
+                        <c:if test="${order.isdelivered}">
+                            udleveret
+                        </c:if>
+                        <c:if test="${!order.isdelivered}">
+                            under behandling
+                        </c:if></th>
                     <th></th>
                 </tr>
                 <tr>
@@ -44,7 +50,7 @@
                     <th></th>
                     <th></th>
                     <th></th>
-                    <th>Subtotal: <c:out value="${order.orderTotal}"/></th>
+                    <th>Total: <c:out value="${order.orderTotal}"/></th>
                 </tr>
             </table>
             </c:if>

@@ -43,9 +43,11 @@
 
                         <td colspan="3">
                             <div class="btn-group" role="group" aria-label="Basic example">
+                                <c:if test="${sessionScope.user_id != clist.id}">
                                 <button class="btn btn-danger" type="submit" name="delete" value="${clist.id}">delete
                                     user
                                 </button>
+                                </c:if>
                                 <c:if test="${not clist.role.equals('employee')}">
                                     <button class="btn btn-info" type="submit" name="olist" value="${clist.id}">see
                                         orders

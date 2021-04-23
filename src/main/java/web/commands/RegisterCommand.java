@@ -21,9 +21,23 @@ public class RegisterCommand extends CommandUnprotectedPage {
         String email = request.getParameter("email");
         String password1 = request.getParameter("password1");
         String password2 = request.getParameter("password2");
+        User user;
+
+        if(email.equals("") || password1.equals("")){
+            request.setAttribute("error", "Hallo taber, du skal fylde ud!");
+            return "registerpage";
+        }
+
+
+
 
         if (password1.equals(password2)) {
-            User user = userFacade.createUser(email, password1);
+            try {
+                user = userFacade.createUser(email, password1);
+            } catch (Exception e){
+                request.setAttribute("error", "Brugernavn eksisterer allerede!");
+                return "registerpage";
+            }
             HttpSession session = request.getSession();
 
             session.setAttribute("email", email);
