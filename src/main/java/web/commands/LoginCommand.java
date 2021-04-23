@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class LoginCommand extends CommandUnprotectedPage {
-    private UserFacade userFacade;
+    private final UserFacade userFacade;
 
     public LoginCommand(String pageToShow) {
         super(pageToShow);
