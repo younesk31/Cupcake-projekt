@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `cupcake` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `cupcake`;
--- MySQL dump 10.13  Distrib 8.0.22, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.23, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: cupcake
+-- Host: localhost    Database: cupcake
 -- ------------------------------------------------------
--- Server version	8.0.22
+-- Server version	8.0.23
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -112,10 +110,19 @@ CREATE TABLE `orderline` (
   KEY `fk_orderline_bottoms1_idx` (`bottom_id`),
   CONSTRAINT `fk_orderline_bottoms1` FOREIGN KEY (`bottom_id`) REFERENCES `bottoms` (`bottom_id`),
   CONSTRAINT `fk_orderline_toppings1` FOREIGN KEY (`topping_id`) REFERENCES `toppings` (`toppings_id`),
-  CONSTRAINT `fk_orders_has_product_orders1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`)
+  CONSTRAINT `fk_orders_has_product_orders1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `orderline`
+--
+
+LOCK TABLES `orderline` WRITE;
+/*!40000 ALTER TABLE `orderline` DISABLE KEYS */;
+INSERT INTO `orderline` VALUES (6,2,3,1),(7,2,2,2),(8,2,3,2),(9,8,2,1);
+/*!40000 ALTER TABLE `orderline` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `orders`
@@ -134,9 +141,18 @@ CREATE TABLE `orders` (
   PRIMARY KEY (`order_id`),
   KEY `fk_orders_users1_idx` (`user_id`),
   CONSTRAINT `fk_orders_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `orders`
+--
+
+LOCK TABLES `orders` WRITE;
+/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` VALUES (6,5,20,'2021-04-22 10:54:31',1,0),(7,3,20,'2021-04-22 10:54:57',1,0),(8,1,20,'2021-04-22 11:54:51',1,0),(9,1,80,'2021-04-22 11:58:34',0,0);
+/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `toppings`
@@ -178,7 +194,7 @@ CREATE TABLE `users` (
   `balance` double NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `username_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -187,7 +203,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'user','1','customer',5000),(2,'admin','1','employee',5000);
+INSERT INTO `users` VALUES (1,'user','1','customer',4608),(3,'user1','1','customer',9980),(5,'user2','1','customer',1.1132313e72),(6,'admin','1','employee',22222222222),(7,'user@dkdk.dk','1','customer',0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -200,4 +216,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-20 10:16:53
+-- Dump completed on 2021-04-23  9:16:45
