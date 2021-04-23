@@ -37,12 +37,14 @@
                                 </form>
                             </th>
                             <th colspan="2">
+                    <c:if test="${!order.isdelivered}">
                                 <form action="${pageContext.request.contextPath}/fc/deliverOrder" method="post">
                                     <button onclick="" class="btn btn-danger editbtn" type="submit" name="deliverOrder"
                                             value="${order.order_id}">Udlever ordre
                                     </button>
                                     <input type="hidden" name="user_id" value="${order.user_id}">
                                 </form>
+                    </c:if>
                             </th>
 
                             <tr>
