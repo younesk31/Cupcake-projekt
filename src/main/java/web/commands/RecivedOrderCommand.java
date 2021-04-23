@@ -23,13 +23,13 @@ public class RecivedOrderCommand extends Command {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws UserException {
-        User user = (User) request.getSession().getAttribute("user"); //todo
+        User user = (User) request.getSession().getAttribute("user");
 
-        int user_id = (int) request.getSession().getAttribute("user_id");
+        int user_id = user.getId();
         double total = (double) request.getSession().getAttribute("total");
 
         List<Cupcake> cupcakeList = (List<Cupcake>) request.getSession().getAttribute("cupcakeList");
-        double balance = (double) request.getSession().getAttribute("balance");
+        double balance = user.getBalance();
 
         if (balance >= total) {
             cupcakeFacade.insertOrder(user_id, total, cupcakeList);
