@@ -14,51 +14,58 @@
                     ${requestScope.error}
             </p>
         </c:if>
-        <form action="${pageContext.request.contextPath}/fc/clistfunctions">
-            <table class="table table-striped table-dark table-hover ">
-                <thead>
+        <table class="table table-striped table-dark table-hover ">
+            <thead>
+            <tr>
+                <th scope="col">user ID</th>
+                <th scope="col">Role</th>
+                <th scope="col">Name</th>
+                <th scope="col">Balance</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach var="clist" items="${sessionScope.customerList}" varStatus="status">
                 <tr>
-                    <th scope="col">user ID</th>
-                    <th scope="col">Role</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Balance</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach var="clist" items="${sessionScope.customerList}" varStatus="status">
-                    <tr>
-                        <td>${clist.id}</td>
-                        <td>${clist.role}</td>
-                        <td>${clist.email}</td>
-                        <td colspan="1">
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <c:if test="${not clist.role.equals('employee')}">
-                                    <input class="text" type="number" min="0" value="${clist.balance}" name="balance">
-                                    <button class="btn btn-success" type="submit" name="edit" value="${status.index}">
+                    <td>${clist.id}</td>
+                    <td>${clist.role}</td>
+                    <td>${clist.email}</td>
+                    <td colspan="1">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <c:if test="${not clist.role.equals('employee')}">
+                                <form action="${pageContext.request.contextPath}/fc/clistfunctions" method="post">
+                                    <input class="text" type="number" min="0" value="${clist.balance}"
+                                           name="balance">
+                                    <button class="btn btn-success" type="submit" name="edit"
+                                            value="${clist.id}">
                                         save changes
                                     </button>
-                                </c:if>
-                            </div>
+                                </form>
+                            </c:if>
+                        </div>
 
-                        <td colspan="3">
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <c:if test="${sessionScope.user_id != clist.id}">
-                                <button class="btn btn-danger" type="submit" name="delete" value="${clist.id}">delete
-                                    user
-                                </button>
-                                </c:if>
-                                <c:if test="${not clist.role.equals('employee')}">
+                    <td colspan="3">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <c:if test="${sessionScope.user_id != clist.id}">
+                                <form action="${pageContext.request.contextPath}/fc/clistfunctions" method="post">
+                                    <button class="btn btn-danger" type="submit" name="delete" value="${clist.id}">
+                                        delete
+                                        user
+                                    </button>
+                                </form>
+                            </c:if>
+                            <c:if test="${not clist.role.equals('employee')}">
+                                <form action="${pageContext.request.contextPath}/fc/clistfunctions" method="post">
                                     <button class="btn btn-info" type="submit" name="olist" value="${clist.id}">see
                                         orders
                                     </button>
-                                </c:if>
-                            </div>
-                        </td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-        </form>
+                                </form>
+                            </c:if>
+                        </div>
+                    </td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
     </jsp:body>
 </t:genericpage>

@@ -29,15 +29,18 @@ public class ClistCommands extends CommandProtectedPage {
         // edits item if edit button was pressed
         String edit = request.getParameter("edit");
         if (edit != null) {
-            String[] balances = request.getParameterValues("balance");
-            int i = Integer.parseInt(edit);
-            double balance = Double.parseDouble(balances[i]);
-            User u = customerList.get(i);
+            double balance = Double.parseDouble(request.getParameter("balance"));
+            
+            for (User u : customerList)
+            {
+                if (u.getId() == Integer.parseInt(edit))
+                {
+                    u.setBalance(balance);
+                    cupcakeFacade.updateBalance(balance, u.getId());
+                    request.setAttribute("error", "Bruger: " + u.getEmail() + " Balance er ændret til " + balance);
+                }
+            }
 
-            u.setBalance(balance);
-            cupcakeFacade.updateBalance(balance, u.getId());
-
-            request.setAttribute("error", "Bruger: " + customerList.get(i).getEmail() + " Balance er ændret til " + balance);
         }
 
         String delete = request.getParameter("delete");
