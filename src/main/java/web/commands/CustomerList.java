@@ -11,7 +11,7 @@ import java.util.List;
 
 
 public class CustomerList extends CommandProtectedPage {
-    private UserFacade userFacade;
+    private final UserFacade userFacade;
 
     public CustomerList(String pageToShow,String role) {
         super(pageToShow, role);

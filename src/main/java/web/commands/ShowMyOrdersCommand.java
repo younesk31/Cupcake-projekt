@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 public class ShowMyOrdersCommand extends CommandProtectedPage {
-    private OrderListingFacade orderListingFacade;
+    private final OrderListingFacade orderListingFacade;
 
     public ShowMyOrdersCommand(String pageToShow, String role) {
         super(pageToShow, role);
