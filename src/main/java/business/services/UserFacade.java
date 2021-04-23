@@ -19,7 +19,7 @@ public class UserFacade {
     }
 
     public User createUser(String email, String password) throws UserException {
-        User user = new User(email, password, "customer", 0.0);
+        User user = new User(email, password, "customer", 50.0);
         userMapper.createUser(user);
         return user;
     }
