@@ -75,8 +75,8 @@
             </c:if>
             <c:if test="${sessionScope.role == 'customer' }">
                 <a class="p-2 text-dark" href="${pageContext.request.contextPath}/fc/showcart"><img src="https://icons.getbootstrap.com/assets/icons/basket.svg" width="30" height="30" class="d-inline-block align-top" alt=""></a>
-                <c:if test="${sessionScope.balance != null }">
-                    Saldo: ${sessionScope.balance}
+                <c:if test="${sessionScope.user != null }">
+                    Saldo: ${sessionScope.user.balance}
                 </c:if>
             </c:if>
 
